@@ -121,7 +121,15 @@ def setup_logging(log_path: str, level: str = "INFO") -> logging.Logger:
 # ---------------------------------------------------------------------------
 def load_config() -> dict[str, Any]:
     with open(CONFIG_PATH, "r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        cfg = yaml.safe_load(f)
+    # Resolve relative paths against SCRIPT_DIR so the agent is portable
+    # across GitHub Actions, PythonAnywhere, VPS, and local dev — no
+    # need to edit config.yaml when moving between environments.
+    for key in ("db_path", "log_file"):
+        v = cfg.get(key)
+        if v and not os.path.isabs(v):
+            cfg[key] = os.path.join(SCRIPT_DIR, v)
+    return cfg
 
 
 # ---------------------------------------------------------------------------

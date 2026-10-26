@@ -91,13 +91,17 @@ min_relevance_score: 70
 run_interval_minutes: 30
 
 # Cap items processed per run. 2merkato returns 15 per page.
-max_items_per_run: 1
+max_items_per_run: 20
 
 # --- Storage ---------------------------------------------------
-db_path: "/home/z/my-project/scripts/bid_agent/data/sent_items.db"
+# RELATIVE path — agent resolves it against the script's directory
+# at runtime. Makes the agent portable across GitHub Actions,
+# PythonAnywhere, VPS, and your local machine without editing.
+db_path: "data/sent_items.db"
 
 # --- Logging ---------------------------------------------------
-log_file: "/home/z/my-project/scripts/bid_agent/data/agent.log"
+# RELATIVE path — same rule.
+log_file: "data/agent.log"
 log_level: "INFO"   # DEBUG | INFO | WARNING | ERROR
 
 # --- Telegram message format ----------------------------------
