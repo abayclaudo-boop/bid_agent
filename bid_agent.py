@@ -869,14 +869,26 @@ matching this exact schema:
             "generationConfig": {"temperature": 0.2, "maxOutputTokens": 1024},
         }
         try:
-            resp = requests.post(url, json=payload, timeout=60)
+            resp = requests.post(url, json=payload, timeout=45)
+        except requests.exceptions.Timeout as exc:
+            # Read/connect timeouts are transient — treat like rate-limit
+            # so we get the longer 30/60/90s backoff instead of 1/2/4s.
+            raise RateLimitError(f"Gemini timeout: {exc}")
         except Exception as exc:
+            # Connection errors etc. — also transient on Google's side
+            msg = str(exc).lower()
+            if "timeout" in msg or "connection" in msg or "read" in msg:
+                raise RateLimitError(f"Gemini connection error: {exc}")
             raise RuntimeError(f"Gemini HTTP error: {exc}")
 
-        if resp.status_code == 429:
-            raise RateLimitError("Gemini API returned 429 (rate-limited)")
+        if resp.status_code in (429, 503):
+            # 429 = rate-limited; 503 = high demand / temporary outage.
+            # Both are transient — longer backoff is appropriate.
+            raise RateLimitError(
+                f"Gemini API returned {resp.status_code} "
+                f"(transient: rate-limit or high demand)"
+            )
         if resp.status_code != 200:
-            # Surface a useful chunk of the error body for debugging
             body = resp.text[:300]
             raise RuntimeError(
                 f"Gemini HTTP {resp.status_code}: {body}"
@@ -890,7 +902,6 @@ matching this exact schema:
         # {"candidates":[{"content":{"parts":[{"text":"..."}]}}]}
         candidates = data.get("candidates") or []
         if not candidates:
-            # Maybe a prompt feedback block (e.g. safety filter blocked)
             feedback = data.get("promptFeedback") or {}
             block_reason = feedback.get("blockReason")
             raise RuntimeError(

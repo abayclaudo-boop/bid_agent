@@ -90,8 +90,12 @@ min_relevance_score: 70
 # Run interval in minutes. 30 = every 30 minutes.
 run_interval_minutes: 30
 
-# Cap items processed per run. 2merkato returns 15 per page.
-max_items_per_run: 20
+# Cap items processed per run. 2merkato returns 15 per page; we
+# slice to the first N. Lower = faster cycle that fits within the
+# GitHub Actions 25-min timeout even when Gemini is slow (each
+# failed item retries 3× with 30/60/90s backoff). 10 keeps total
+# runtime under ~15 min in the worst case.
+max_items_per_run: 10
 
 # --- Storage ---------------------------------------------------
 # RELATIVE path — agent resolves it against the script's directory

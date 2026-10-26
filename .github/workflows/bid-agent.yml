@@ -25,7 +25,11 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # Bumped from 10 → 25 min. Gemini free tier occasionally returns
+    # 503 "high demand" errors — each failed item retries 3× with
+    # 30/60/90s backoff, so a full 15-item cycle can take ~20 min
+    # during demand spikes. 25 min gives comfortable headroom.
+    timeout-minutes: 25
 
     steps:
       - name: Checkout code
