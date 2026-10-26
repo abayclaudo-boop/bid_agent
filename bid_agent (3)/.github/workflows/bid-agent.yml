@@ -1,0 +1,109 @@
+name: Bid News Agent
+
+# Triggers:
+#   - Schedule: 3 times a day (06:00, 12:00, 18:00 UTC)
+#     = 09:00, 15:00, 21:00 East Africa Time (UTC+3)
+#   - Manual: workflow_dispatch lets you click "Run workflow" in the
+#     Actions tab for testing.
+on:
+  schedule:
+    - cron: "0 6,12,18 * * *"
+  workflow_dispatch:
+
+# Don't cancel an in-flight run if a new schedule fires (prevents
+# half-finished runs that could lose dedupe state).
+concurrency:
+  group: bid-agent-run
+  cancel-in-progress: false
+
+# Set permissions explicitly — only need to read the repo and write
+# the cache. Reduces blast radius.
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    # Bumped from 10 → 25 min. Gemini free tier occasionally returns
+    # 503 "high demand" errors — each failed item retries 3× with
+    # 30/60/90s backoff, so a full 15-item cycle can take ~20 min
+    # during demand spikes. 25 min gives comfortable headroom.
+    timeout-minutes: 25
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # CRITICAL: use a UNIQUE key per run for save, with restore-keys
+      # falling back to ANY previous bid-agent-dedupe-* entry.
+      # If we used the same key for restore AND save, the save step
+      # would SKIP (because cache hit during restore means "key exists")
+      # and our updated dedupe DB would never persist → duplicate alerts.
+      - name: Restore dedupe DB from cache
+        id: restore-cache
+        uses: actions/cache@v4
+        with:
+          path: data/sent_items.db
+          key:        bid-agent-dedupe-${{ github.run_id }}
+          restore-keys: |
+            bid-agent-dedupe-
+
+      # Make sure the data/ directory exists even if cache restore
+      # missed (first-ever run) — prevents the agent from crashing
+      # when it tries to open the SQLite DB.
+      - name: Ensure data/ directory exists
+        run: mkdir -p data
+
+      # Run one agent cycle. Secrets are passed via env vars; the
+      # agent reads them via os.environ.get().
+      - name: Run the agent
+        env:
+          TELEGRAM_BOT_TOKEN:   ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID:     ${{ secrets.TELEGRAM_CHAT_ID }}
+          SITE_LOGIN_EMAIL:     ${{ secrets.SITE_LOGIN_EMAIL }}
+          SITE_LOGIN_PASSWORD:  ${{ secrets.SITE_LOGIN_PASSWORD }}
+          # Groq is the recommended LLM backend — free 1000 req/day,
+          # fast (~1s/call), much more generous than Gemini.
+          GROQ_API_KEY:          ${{ secrets.GROQ_API_KEY }}
+          # Gemini is kept as a fallback (used only if GROQ_API_KEY
+          # is not set). Free tier has very tight rate limits.
+          GEMINI_API_KEY:        ${{ secrets.GEMINI_API_KEY }}
+          USER_AGENT: "Mozilla/5.0 (compatible; BidNewsAgent/1.0)"
+        run: |
+          python bid_agent.py
+
+      # Save the updated dedupe DB under a NEW unique key. This
+      # always runs (`if: always()`) so we don't lose already-sent
+      # tender IDs even if the agent step partially failed.
+      # We use the dedicated `actions/cache/save` action — it
+      # writes a new cache entry that the next run will pick up via
+      # restore-keys fallback.
+      - name: Save updated dedupe DB to cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/sent_items.db
+          key: bid-agent-dedupe-${{ github.run_id }}
+
+      # Optional: upload agent.log as a downloadable artifact.
+      # Visible in the Actions UI under the run → "agent-log" artifact.
+      # Retained 14 days.
+      - name: Attach agent.log as artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-log
+          path: data/agent.log
+          if-no-files-found: ignore
+          retention-days: 14
