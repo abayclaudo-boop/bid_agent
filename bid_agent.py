@@ -93,6 +93,11 @@ class RateLimitError(Exception):
     """Raised when the z-ai API returns HTTP 429."""
 
 
+class _GroqModelNotFoundError(Exception):
+    """Internal: raised when Groq returns 404 for a model name, so
+    _call_groq can try the next model in the fallback chain."""
+
+
 # ---------------------------------------------------------------------------
 # Logging
 # ---------------------------------------------------------------------------
@@ -943,7 +948,28 @@ class LLMFilter:
 
     # Groq's free tier offers these models. Override via env var
     # GROQ_MODEL. Defaults to llama-3.3-70b-versatile (best quality).
+    # If that model is deprecated, _call_groq will automatically try
+    # the GROQ_MODEL_FALLBACKS list below.
     DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
+
+    # Fallback chain — if the primary model returns 404 (model_not_found),
+    # try these in order. Older model names tend to remain available
+    # longer than the newest ones.
+    GROQ_MODEL_FALLBACKS = [
+        "llama-3.3-70b-versatile",
+        "llama-3.1-70b-versatile",
+        "llama-3.1-8b-instant",
+        "llama3-70b-8192",
+        "llama3-8b-8192",
+    ]
+
+    # Models known to support JSON mode (response_format: json_object).
+    # For others, we skip JSON mode and rely on prompt instructions only.
+    GROQ_MODELS_WITH_JSON_MODE = {
+        "llama-3.3-70b-versatile",
+        "llama-3.1-70b-versatile",
+        "llama-3.1-8b-instant",
+    }
 
     # Override via env var GEMINI_MODEL if needed.
     DEFAULT_GEMINI_MODEL = "gemini-3.8-flash"
@@ -956,10 +982,13 @@ class LLMFilter:
         self.groq_model = os.environ.get("GROQ_MODEL", self.DEFAULT_GROQ_MODEL)
         self.gemini_api_key = os.environ.get("GEMINI_API_KEY", "").strip()
         self.gemini_model = os.environ.get("GEMINI_MODEL", self.DEFAULT_GEMINI_MODEL)
+        # Remember the first Groq model that works, so we don't waste
+        # a round-trip on every call trying deprecated models.
+        self._groq_working_model: str | None = None
         if self.groq_api_key:
             self.logger.info(
-                "LLM backend: Groq (model=%s) — free tier, 1000 req/day",
-                self.groq_model,
+                "LLM backend: Groq (model=%s, fallbacks=%d) — free tier, 1000 req/day",
+                self.groq_model, len(self.GROQ_MODEL_FALLBACKS),
             )
         elif self.gemini_api_key:
             self.logger.info(
@@ -1121,26 +1150,82 @@ matching this exact schema:
     # ---- Groq backend (recommended — fastest + most generous) -------
     def _call_groq(self, prompt: str) -> str:
         """Call Groq's OpenAI-compatible chat completions API.
-        Free tier: 1000 req/day, 30 RPM on llama-3.3-70b-versatile."""
+        Tries the configured model first, then falls back through
+        GROQ_MODEL_FALLBACKS if the model returns 404 (model_not_found).
+        Free tier: 1000 req/day, 30 RPM on most models."""
+
+        # Build the list of models to try — the configured one first,
+        # then any fallbacks not already in the list.
+        models_to_try: list[str] = [self.groq_model]
+        for m in self.GROQ_MODEL_FALLBACKS:
+            if m not in models_to_try:
+                models_to_try.append(m)
+
+        # If we already found a working model on a previous call, try
+        # that first (skip the trial-and-error dance).
+        if self._groq_working_model:
+            models_to_try = [self._groq_working_model] + [
+                m for m in models_to_try if m != self._groq_working_model
+            ]
+
+        last_err: Exception | None = None
+        for idx, model in enumerate(models_to_try):
+            try:
+                content = self._call_groq_with_model(model, prompt)
+                # Success — cache the working model for next time.
+                if self._groq_working_model != model:
+                    self.logger.info(
+                        "Groq: using model '%s'%s",
+                        model,
+                        f" (fallback #{idx})" if idx > 0 else "",
+                    )
+                    self._groq_working_model = model
+                return content
+            except _GroqModelNotFoundError as exc:
+                # Model deprecated or no access — try next in chain.
+                last_err = exc
+                self.logger.info(
+                    "Groq model '%s' not available — trying next fallback",
+                    model,
+                )
+                continue
+            except RateLimitError:
+                # 429 / 503 — don't try other models; the issue is
+                # quota/demand, not the model name. Re-raise.
+                raise
+            except Exception as exc:
+                # Other errors (network, parsing) — also don't retry
+                # with a different model. Surface to caller.
+                raise
+
+        # All fallbacks exhausted — surface the last model_not_found error.
+        raise RuntimeError(
+            f"Groq: all {len(models_to_try)} fallback models returned "
+            f"model_not_found. Last error: {last_err}"
+        )
+
+    def _call_groq_with_model(self, model: str, prompt: str) -> str:
+        """Single Groq call with a specific model. Raises
+        _GroqModelNotFoundError if the model is deprecated."""
         url = "https://api.groq.com/openai/v1/chat/completions"
         headers = {
             "Authorization": f"Bearer {self.groq_api_key}",
             "Content-Type": "application/json",
         }
-        payload = {
-            "model": self.groq_model,
+        payload: dict[str, Any] = {
+            "model": model,
             "messages": [
-                # Groq uses standard OpenAI roles. System message
-                # for instructions, user message for the actual item.
                 {"role": "system", "content": "You are a procurement analyst. Respond with strict JSON only."},
                 {"role": "user", "content": prompt},
             ],
             "temperature": 0.2,
             "max_tokens": 1024,
-            # Groq supports JSON mode for guaranteed-valid JSON output.
-            # Comment out the next line if your model doesn't support it.
-            "response_format": {"type": "json_object"},
         }
+        # Only enable JSON mode for models that support it (older
+        # llama3-* models don't, and sending it causes a 400 error).
+        if model in self.GROQ_MODELS_WITH_JSON_MODE:
+            payload["response_format"] = {"type": "json_object"}
+
         try:
             resp = requests.post(url, headers=headers, json=payload, timeout=30)
         except requests.exceptions.Timeout as exc:
@@ -1156,6 +1241,17 @@ matching this exact schema:
                 f"Groq API returned {resp.status_code} "
                 f"(transient: rate-limit or high demand)"
             )
+        if resp.status_code == 404:
+            # Model not found / no access. Caller will try next fallback.
+            raise _GroqModelNotFoundError(
+                f"Groq model '{model}' not available (404)"
+            )
+        if resp.status_code == 400 and "model" in resp.text.lower() and "not" in resp.text.lower():
+            # Some 400 errors are actually model-related (e.g. "model
+            # not supported for this endpoint"). Treat like 404.
+            raise _GroqModelNotFoundError(
+                f"Groq model '{model}' not supported (400): {resp.text[:200]}"
+            )
         if resp.status_code != 200:
             body = resp.text[:300]
             raise RuntimeError(f"Groq HTTP {resp.status_code}: {body}")
@@ -1164,8 +1260,6 @@ matching this exact schema:
         except json.JSONDecodeError as exc:
             raise RuntimeError(f"Groq response not JSON: {exc}")
 
-        # Standard OpenAI response shape:
-        # {"choices":[{"message":{"content":"..."}}]}
         choices = data.get("choices") or []
         if not choices:
             raise RuntimeError("Groq returned no choices")
