@@ -696,32 +696,43 @@ class SiteScraper:
 class LLMFilter:
     """Calls an LLM to judge each candidate bid item.
 
-    Supports two backends (auto-selected by environment variable):
-      - `GEMINI_API_KEY` set → use Google Gemini (free tier: 1,500
-        requests/day on gemini-2.5-flash). Recommended for free
-        24/7 hosting.
-      - Otherwise → fall back to `z-ai chat` CLI (GLM-4).
+    Supports three backends (auto-selected by environment variable,
+    in priority order):
+      1. `GROQ_API_KEY` set → use Groq (Llama 3.3 70B, free tier
+        1000 req/day). Recommended — fast (~1s/call) and generous.
+      2. `GEMINI_API_KEY` set → use Google Gemini 3.8 Flash (free
+        tier — but very tight rate limits, often returns 429).
+      3. Otherwise → fall back to `z-ai chat` CLI (GLM-4).
     """
 
-    # Override via env var GEMINI_MODEL if a different model name is
-    # needed. As of late 2025, Google has retired gemini-2.0-flash
-    # and gemini-2.5-flash in favor of gemini-3.8-flash.
+    # Groq's free tier offers these models. Override via env var
+    # GROQ_MODEL. Defaults to llama-3.3-70b-versatile (best quality).
+    DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
+
+    # Override via env var GEMINI_MODEL if needed.
     DEFAULT_GEMINI_MODEL = "gemini-3.8-flash"
 
     def __init__(self, brief: str, min_score: int, logger: logging.Logger) -> None:
         self.brief = brief.strip()
         self.min_score = min_score
         self.logger = logger
+        self.groq_api_key = os.environ.get("GROQ_API_KEY", "").strip()
+        self.groq_model = os.environ.get("GROQ_MODEL", self.DEFAULT_GROQ_MODEL)
         self.gemini_api_key = os.environ.get("GEMINI_API_KEY", "").strip()
         self.gemini_model = os.environ.get("GEMINI_MODEL", self.DEFAULT_GEMINI_MODEL)
-        if self.gemini_api_key:
+        if self.groq_api_key:
             self.logger.info(
-                "LLM backend: Gemini (model=%s) — free tier",
+                "LLM backend: Groq (model=%s) — free tier, 1000 req/day",
+                self.groq_model,
+            )
+        elif self.gemini_api_key:
+            self.logger.info(
+                "LLM backend: Gemini (model=%s) — free tier (tight limits)",
                 self.gemini_model,
             )
         else:
             self.logger.info(
-                "LLM backend: z-ai CLI (GLM-4) — no GEMINI_API_KEY in env"
+                "LLM backend: z-ai CLI (GLM-4) — no GROQ_API_KEY/GEMINI_API_KEY in env"
             )
 
     SYSTEM_PROMPT_TEMPLATE = """\
@@ -768,17 +779,23 @@ matching this exact schema:
 
     def judge(self, item: BidItem) -> LLMJudgment | None:
         # Merge system instructions into the user prompt (works for
-        # both Gemini and z-ai CLI backends).
+        # all backends — Groq, Gemini, z-ai CLI).
         system_prompt = self.SYSTEM_PROMPT_TEMPLATE.format(brief=self.brief)
         user_prompt = self._build_user_prompt(item)
         combined_prompt = f"{system_prompt}\n\n--- BEGIN ITEM ---\n{user_prompt}"
 
-        # Try up to 3 times with backoff. 429 errors get a longer wait.
+        # On rate-limit errors, retrying within the same minute is
+        # usually pointless (quota is exhausted for the minute). We
+        # use only 2 attempts total (1 initial + 1 retry after 30s),
+        # giving the quota a chance to reset without burning the
+        # whole workflow timeout.
         last_err = None
         raw: str = ""
-        for attempt in range(3):
+        for attempt in range(2):
             try:
-                if self.gemini_api_key:
+                if self.groq_api_key:
+                    raw = self._call_groq(combined_prompt)
+                elif self.gemini_api_key:
                     raw = self._call_gemini(combined_prompt)
                 else:
                     raw = self._call_zai_cli(combined_prompt)
@@ -786,15 +803,24 @@ matching this exact schema:
                     break
             except RateLimitError as exc:
                 last_err = exc
-                wait = 30 * (attempt + 1)   # 30s, 60s, 90s
-                self.logger.warning(
-                    "LLM rate-limited for %s (attempt %d, waiting %ds)",
-                    item.source_url, attempt + 1, wait,
-                )
-                time.sleep(wait)
+                if attempt == 0:
+                    # Single retry with 30s wait — gives quota a
+                    # chance to reset within the minute window.
+                    self.logger.warning(
+                        "LLM rate-limited for %s (retry in 30s): %s",
+                        item.source_url, str(exc)[:120],
+                    )
+                    time.sleep(30)
+                else:
+                    self.logger.warning(
+                        "LLM still rate-limited for %s after retry — giving up (will retry on next scheduled run)",
+                        item.source_url,
+                    )
             except Exception as exc:
                 last_err = exc
-                wait = 2 ** attempt   # 1s, 2s, 4s
+                # For non-rate-limit errors (parsing, content filter,
+                # network blip), keep the existing 3-retry logic.
+                wait = 2 ** attempt   # 1s, 2s
                 self.logger.warning(
                     "LLM call attempt %d failed for %s (retry in %ds): %s",
                     attempt + 1, item.source_url, wait, str(exc)[:160],
@@ -815,8 +841,8 @@ matching this exact schema:
             )
             return None
 
-        # Small courtesy throttle to avoid hammering the API
-        time.sleep(1.2)
+        # Small courtesy throttle (Groq is fast — 1s is plenty).
+        time.sleep(1.0)
 
         return LLMJudgment(
             is_relevant=bool(parsed.get("is_relevant", False)),
@@ -855,6 +881,62 @@ matching this exact schema:
             f"Metadata:\n{meta_block}\n"
             f"Raw item JSON:\n{snippet}\n"
         )
+
+    # ---- Groq backend (recommended — fastest + most generous) -------
+    def _call_groq(self, prompt: str) -> str:
+        """Call Groq's OpenAI-compatible chat completions API.
+        Free tier: 1000 req/day, 30 RPM on llama-3.3-70b-versatile."""
+        url = "https://api.groq.com/openai/v1/chat/completions"
+        headers = {
+            "Authorization": f"Bearer {self.groq_api_key}",
+            "Content-Type": "application/json",
+        }
+        payload = {
+            "model": self.groq_model,
+            "messages": [
+                # Groq uses standard OpenAI roles. System message
+                # for instructions, user message for the actual item.
+                {"role": "system", "content": "You are a procurement analyst. Respond with strict JSON only."},
+                {"role": "user", "content": prompt},
+            ],
+            "temperature": 0.2,
+            "max_tokens": 1024,
+            # Groq supports JSON mode for guaranteed-valid JSON output.
+            # Comment out the next line if your model doesn't support it.
+            "response_format": {"type": "json_object"},
+        }
+        try:
+            resp = requests.post(url, headers=headers, json=payload, timeout=30)
+        except requests.exceptions.Timeout as exc:
+            raise RateLimitError(f"Groq timeout: {exc}")
+        except Exception as exc:
+            msg = str(exc).lower()
+            if "timeout" in msg or "connection" in msg or "read" in msg:
+                raise RateLimitError(f"Groq connection error: {exc}")
+            raise RuntimeError(f"Groq HTTP error: {exc}")
+
+        if resp.status_code in (429, 503):
+            raise RateLimitError(
+                f"Groq API returned {resp.status_code} "
+                f"(transient: rate-limit or high demand)"
+            )
+        if resp.status_code != 200:
+            body = resp.text[:300]
+            raise RuntimeError(f"Groq HTTP {resp.status_code}: {body}")
+        try:
+            data = resp.json()
+        except json.JSONDecodeError as exc:
+            raise RuntimeError(f"Groq response not JSON: {exc}")
+
+        # Standard OpenAI response shape:
+        # {"choices":[{"message":{"content":"..."}}]}
+        choices = data.get("choices") or []
+        if not choices:
+            raise RuntimeError("Groq returned no choices")
+        content = choices[0].get("message", {}).get("content", "")
+        if not content:
+            raise RuntimeError("Groq choice has no content")
+        return content
 
     # ---- Gemini backend -------------------------------------------------
     def _call_gemini(self, prompt: str) -> str:
