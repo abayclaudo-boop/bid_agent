@@ -1,46 +1,15 @@
-2026-10-27 14:31:14 | INFO    | ===== Bid News Agent starting =====
-2026-10-27 14:31:14 | INFO    | Mode: single
-2026-10-27 14:31:14 | INFO    | Dry-run: False
-2026-10-27 14:31:14 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-10-27 14:31:14 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-10-27 14:31:15 | INFO    | Login step 1 OK — CSRF token: 1pOORo2OICKQ…
-2026-10-27 14:31:15 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-10-27 14:31:16 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-10-27 14:31:17 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-10-27 14:31:17 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-10-27 14:31:17 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-10-27 14:31:17 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 14:31:17 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
-2026-10-27 14:31:18 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
-2026-10-27 14:31:18 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
-2026-10-27 14:31:18 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
-2026-10-27 14:31:18 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
-2026-10-27 14:31:18 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
-2026-10-27 14:31:18 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
-2026-10-27 14:31:18 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
-2026-10-27 14:31:18 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
-2026-10-27 14:31:18 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
-2026-10-27 14:31:18 | INFO    | Groq live model 'canopylabs/orpheus-arabic-saudi' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"The model `canopylabs/orpheus-arabic-saudi` requires terms acceptance. Please have t
-2026-10-27 14:31:19 | INFO    | Groq: using model 'qwen/qwen3.8-27b' (live-list fallback #1)
-2026-10-27 14:31:20 | INFO    | Skip (not relevant, score=0): በኢፌዴሪ መከላከያ ሚኒስቴር የሰሜን ምስራቅ ዕዝ ጠ/መምሪያ በ2019 በጀት ዓመት ለዕዙ አገልግሎት የሚውሉ የተለያዩ  ዕቃዎችን
-2026-10-27 14:31:23 | INFO    | Dashboard: appended tender 8ac908000001
-2026-10-27 14:31:23 | INFO    | Sent: የደብረ ማርቆስ አጠቃላይ ስፔሻላይዝድ ሆስፒታል በ2019 በጀት ዓመት ለሆስፒታሉ አገልግሎት የሚውሉ ህትመቶችን፣ የጽህፈት መሣሪ (Vehicle Maintenance, score=85)
-2026-10-27 14:31:26 | INFO    | Dashboard: appended tender 8ae0ea000001
-2026-10-27 14:31:26 | INFO    | Sent: የኦሮሚያ መሬት ቢሮ የመስሪያ ቤቱ ተሽከርካሪዎችን ከህጋዊ ጋራዥ አወዳድሮ ማስጠገን ይፈልጋል (Vehicle Maintenance, score=95)
-2026-10-27 14:31:29 | INFO    | Skip (not relevant, score=0): በሃገር መከላከያ ሚኒስቴር የ6ኛ ዕዝ 602ኛ ኮር ግዥ በ2019 በጀት ዓመት ለኮሩ አገልግሎት የሚውሉ እቃዎች በግልፅ ጨረታ አ
-2026-10-27 14:31:29 | WARNING | LLM rate-limited for https://tender.2merkato.com/tenders/6adf5b450a538a36d9000001 (retry in 30s): Groq API returned 429 (transient: rate-limit or high demand)
-2026-10-27 14:32:01 | INFO    | Dashboard: appended tender 8a36d9000001
-2026-10-27 14:32:01 | INFO    | Sent: EthSwitch Share Company invites this bid for interested and eligible bidders for (Vehicle Purchase, score=100)
-2026-10-27 14:32:04 | INFO    | Dashboard: appended tender 8aff74000001
-2026-10-27 14:32:04 | INFO    | Sent: Commercial Bank of Ethiopia, invites interested and qualified bidders/suppliers  (Vehicle Purchase, score=100)
-2026-10-27 14:32:07 | INFO    | Dashboard: appended tender 8aae63000001
-2026-10-27 14:32:07 | INFO    | Sent: Oromia Bank invites sealed bids from eligible bidders for the procurement of the (Vehicle Purchase, score=100)
-2026-10-27 14:32:08 | WARNING | LLM rate-limited for https://tender.2merkato.com/tenders/6adf393d0a538aa46b000001 (retry in 30s): Groq API returned 429 (transient: rate-limit or high demand)
-2026-10-27 14:32:40 | INFO    | Skip (not relevant, score=0): የኢትዮጵያ ምድር ባቡር ኮርፖሬሽን የኤሌክትሪክ ተሽከርካሪዎች ቻርጀር ግዥ እና ገጠማ ( Procurement of Supply, I
-2026-10-27 14:32:42 | INFO    | Dashboard: appended tender 8ad8d9000001
-2026-10-27 14:32:42 | INFO    | Sent: Commercial Bank of Ethiopia, invites interested and qualified bidders/suppliers  (Vehicle Purchase, score=100)
-2026-10-27 14:32:45 | INFO    | Skip (not relevant, score=0): National Bank of Ethiopia invites interested and eligible bidders for the supply
-2026-10-27 14:32:45 | INFO    | Dashboard: regenerated HTML with 6 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-10-27 14:32:45 | INFO    | Dashboard: wrote JSON array with 6 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-10-27 14:32:45 | INFO    | Cycle complete: {'scraped': 15, 'new': 10, 'sent': 6, 'skipped': 4, 'errors': 0}
-2026-10-27 14:32:45 | INFO    | ===== Bid News Agent finished =====
+2026-10-27 18:34:33 | INFO    | ===== Bid News Agent starting =====
+2026-10-27 18:34:33 | INFO    | Mode: single
+2026-10-27 18:34:33 | INFO    | Dry-run: False
+2026-10-27 18:34:33 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-10-27 18:34:33 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-10-27 18:34:34 | INFO    | Login step 1 OK — CSRF token: A3UGaehXRavz…
+2026-10-27 18:34:34 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-10-27 18:34:35 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-10-27 18:34:35 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-10-27 18:34:35 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-10-27 18:34:35 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-10-27 18:34:35 | INFO    | Dashboard: regenerated HTML with 6 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-10-27 18:34:35 | INFO    | Dashboard: wrote JSON array with 6 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-10-27 18:34:35 | INFO    | Cycle complete: {'scraped': 15, 'new': 0, 'sent': 0, 'skipped': 10, 'errors': 0}
+2026-10-27 18:34:35 | INFO    | ===== Bid News Agent finished =====
