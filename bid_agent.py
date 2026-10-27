@@ -952,15 +952,21 @@ class LLMFilter:
     # the GROQ_MODEL_FALLBACKS list below.
     DEFAULT_GROQ_MODEL = "llama-3.3-70b-versatile"
 
-    # Fallback chain — if the primary model returns 404 (model_not_found),
-    # try these in order. Older model names tend to remain available
-    # longer than the newest ones.
+    # Fallback chain — if the primary model returns 404 or 400 with
+    # decommissioned/deprecated error, try these in order. As of late
+    # 2025, Groq has decommissioned several models; this list covers
+    # both old and new naming conventions.
     GROQ_MODEL_FALLBACKS = [
         "llama-3.3-70b-versatile",
         "llama-3.1-70b-versatile",
         "llama-3.1-8b-instant",
         "llama3-70b-8192",
         "llama3-8b-8192",
+        "gemma2-9b-it",
+        "mixtral-8x7b-32768",
+        "llama-3.2-1b-preview",
+        "llama-3.2-3b-preview",
+        "llama3-groq-70b-8192-tool-use-preview",
     ]
 
     # Models known to support JSON mode (response_format: json_object).
@@ -985,6 +991,9 @@ class LLMFilter:
         # Remember the first Groq model that works, so we don't waste
         # a round-trip on every call trying deprecated models.
         self._groq_working_model: str | None = None
+        # Track whether we've already fetched the live model list from
+        # Groq's /v1/models endpoint (only fetch once per agent run).
+        self._groq_live_models_fetched: bool = False
         if self.groq_api_key:
             self.logger.info(
                 "LLM backend: Groq (model=%s, fallbacks=%d) — free tier, 1000 req/day",
@@ -1151,8 +1160,8 @@ matching this exact schema:
     def _call_groq(self, prompt: str) -> str:
         """Call Groq's OpenAI-compatible chat completions API.
         Tries the configured model first, then falls back through
-        GROQ_MODEL_FALLBACKS if the model returns 404 (model_not_found).
-        Free tier: 1000 req/day, 30 RPM on most models."""
+        GROQ_MODEL_FALLBACKS, then finally tries models fetched live
+        from Groq's /v1/models endpoint. Free tier: 1000 req/day."""
 
         # Build the list of models to try — the configured one first,
         # then any fallbacks not already in the list.
@@ -1198,15 +1207,66 @@ matching this exact schema:
                 # with a different model. Surface to caller.
                 raise
 
+        # All hardcoded fallbacks failed — try the LIVE model list
+        # from Groq's /v1/models endpoint as a last resort.
+        if not self._groq_live_models_fetched:
+            self._groq_live_models_fetched = True  # only fetch once per run
+            live_models = self._fetch_groq_models_live()
+            # Add only models not already tried
+            new_models = [m for m in live_models if m not in models_to_try]
+
+            for idx, model in enumerate(new_models):
+                try:
+                    content = self._call_groq_with_model(model, prompt)
+                    self.logger.info(
+                        "Groq: using model '%s' (live-list fallback #%d)",
+                        model, idx,
+                    )
+                    self._groq_working_model = model
+                    return content
+                except _GroqModelNotFoundError as exc:
+                    last_err = exc
+                    continue
+                except (RateLimitError, Exception):
+                    raise
+
         # All fallbacks exhausted — surface the last model_not_found error.
         raise RuntimeError(
-            f"Groq: all {len(models_to_try)} fallback models returned "
-            f"model_not_found. Last error: {last_err}"
+            f"Groq: all {len(models_to_try)} models returned model_not_found / "
+            f"decommissioned. Last error: {last_err}. "
+            f"Check https://console.groq.com/docs/deprecations for current models."
         )
+
+    def _fetch_groq_models_live(self) -> list[str]:
+        """Fetch the list of currently-available models from Groq's API.
+        Used as a last-resort fallback when hardcoded models all fail."""
+        try:
+            resp = requests.get(
+                "https://api.groq.com/openai/v1/models",
+                headers={"Authorization": f"Bearer {self.groq_api_key}"},
+                timeout=10,
+            )
+            if resp.status_code == 200:
+                data = resp.json()
+                models = [
+                    m.get("id") for m in data.get("data", []) if m.get("id")
+                ]
+                self.logger.info(
+                    "Groq: fetched %d live models from /v1/models endpoint",
+                    len(models),
+                )
+                return models
+            else:
+                self.logger.warning(
+                    "Groq: /v1/models returned HTTP %d", resp.status_code
+                )
+        except Exception as exc:
+            self.logger.warning("Groq: failed to fetch live models list: %s", exc)
+        return []
 
     def _call_groq_with_model(self, model: str, prompt: str) -> str:
         """Single Groq call with a specific model. Raises
-        _GroqModelNotFoundError if the model is deprecated."""
+        _GroqModelNotFoundError if the model is decommissioned or 404."""
         url = "https://api.groq.com/openai/v1/chat/completions"
         headers = {
             "Authorization": f"Bearer {self.groq_api_key}",
@@ -1241,17 +1301,33 @@ matching this exact schema:
                 f"Groq API returned {resp.status_code} "
                 f"(transient: rate-limit or high demand)"
             )
+        # 404 = classic "model not found"
         if resp.status_code == 404:
-            # Model not found / no access. Caller will try next fallback.
             raise _GroqModelNotFoundError(
                 f"Groq model '{model}' not available (404)"
             )
-        if resp.status_code == 400 and "model" in resp.text.lower() and "not" in resp.text.lower():
-            # Some 400 errors are actually model-related (e.g. "model
-            # not supported for this endpoint"). Treat like 404.
-            raise _GroqModelNotFoundError(
-                f"Groq model '{model}' not supported (400): {resp.text[:200]}"
-            )
+        # 400 might also be a model error — check the response body
+        # for various "model decommissioned/deprecated/not found" markers.
+        if resp.status_code == 400:
+            text_lower = resp.text.lower()
+            model_error_indicators = [
+                "model_not_found",
+                "model_decommissioned",
+                "does not exist",
+                "decommissioned",
+                "no longer supported",
+                "has been decommissioned",
+                "has been deprecated",
+                "is deprecated",
+                "model is not",
+                "model does not",
+                "please refer to",  # Groq includes this in decommissioned errors
+                "for a recommendation on which model",
+            ]
+            if any(ind in text_lower for ind in model_error_indicators):
+                raise _GroqModelNotFoundError(
+                    f"Groq model '{model}' decommissioned (400): {resp.text[:200]}"
+                )
         if resp.status_code != 200:
             body = resp.text[:300]
             raise RuntimeError(f"Groq HTTP {resp.status_code}: {body}")
