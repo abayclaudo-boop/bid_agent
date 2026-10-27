@@ -1,75 +1,246 @@
-2026-10-27 13:52:11 | INFO    | ===== Bid News Agent starting =====
-2026-10-27 13:52:11 | INFO    | Mode: single
-2026-10-27 13:52:11 | INFO    | Dry-run: False
-2026-10-27 13:52:11 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=5) — free tier, 1000 req/day
-2026-10-27 13:52:11 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-10-27 13:52:12 | INFO    | Login step 1 OK — CSRF token: 7313P4PXVVEq…
-2026-10-27 13:52:12 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-10-27 13:52:13 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-10-27 13:52:14 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-10-27 13:52:14 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-10-27 13:52:14 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-10-27 13:52:14 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:14 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae08b430a538aed08000001 (retry in 1s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:15 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:15 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae08b430a538aed08000001 (retry in 2s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:17 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae08b430a538aed08000001: Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
-
-2026-10-27 13:52:17 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:17 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae067580a538ac908000001 (retry in 1s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:18 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:19 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae067580a538ac908000001 (retry in 2s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:21 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae067580a538ac908000001: Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
-
-2026-10-27 13:52:21 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:21 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae05c120a538ae0ea000001 (retry in 1s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:22 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:22 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae05c120a538ae0ea000001 (retry in 2s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:24 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae05c120a538ae0ea000001: Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
-
-2026-10-27 13:52:24 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:24 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae04dec0a538afb61000001 (retry in 1s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:25 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:25 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae04dec0a538afb61000001 (retry in 2s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:27 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae04dec0a538afb61000001: Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
-
-2026-10-27 13:52:27 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:28 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf5b450a538a36d9000001 (retry in 1s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:29 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:29 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf5b450a538a36d9000001 (retry in 2s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:31 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf5b450a538a36d9000001: Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
-
-2026-10-27 13:52:31 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:31 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf4f3c0a538aff74000001 (retry in 1s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:32 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:32 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf4f3c0a538aff74000001 (retry in 2s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:34 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf4f3c0a538aff74000001: Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
-
-2026-10-27 13:52:34 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:34 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf3db50a538aae63000001 (retry in 1s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:35 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:35 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf3db50a538aae63000001 (retry in 2s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:37 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf3db50a538aae63000001: Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
-
-2026-10-27 13:52:38 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:38 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf393d0a538aa46b000001 (retry in 1s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:39 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:39 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf393d0a538aa46b000001 (retry in 2s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:41 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf393d0a538aa46b000001: Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
-
-2026-10-27 13:52:41 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:41 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf21940a538ad8d9000001 (retry in 1s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:42 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:42 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf21940a538ad8d9000001 (retry in 2s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:44 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf21940a538ad8d9000001: Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
-
-2026-10-27 13:52:44 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:44 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf11330a538ad8c5000001 (retry in 1s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:45 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-27 13:52:46 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf11330a538ad8c5000001 (retry in 2s): Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq
-2026-10-27 13:52:48 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf11330a538ad8c5000001: Groq HTTP 400: {"error":{"message":"The model `llama-3.1-70b-versatile` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendation on which model to use instead.","type":"invalid_request_error","code":"model_decommissioned"}}
-
-2026-10-27 13:52:48 | INFO    | Dashboard: regenerated HTML with 0 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-10-27 13:52:48 | INFO    | Dashboard: wrote JSON array with 0 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-10-27 13:52:48 | INFO    | Cycle complete: {'scraped': 15, 'new': 10, 'sent': 0, 'skipped': 0, 'errors': 10}
-2026-10-27 13:52:48 | INFO    | ===== Bid News Agent finished =====
+2026-10-27 14:15:29 | INFO    | ===== Bid News Agent starting =====
+2026-10-27 14:15:29 | INFO    | Mode: single
+2026-10-27 14:15:29 | INFO    | Dry-run: False
+2026-10-27 14:15:29 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-10-27 14:15:29 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-10-27 14:15:30 | INFO    | Login step 1 OK — CSRF token: dNZOPLYNaoGG…
+2026-10-27 14:15:30 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-10-27 14:15:31 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-10-27 14:15:31 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-10-27 14:15:31 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-10-27 14:15:31 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-10-27 14:15:32 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:32 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:32 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:15:32 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:15:32 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:15:32 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:15:32 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:15:32 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:15:32 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:15:32 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:15:32 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-10-27 14:15:33 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae08b430a538aed08000001 (retry in 1s): Groq HTTP 400: {"error":{"message":"`max_tokens` must be less than or equal to `512`, the maximum value for `max_tokens` is less than the `context_window` for t
+2026-10-27 14:15:34 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:34 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:34 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:15:34 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:15:34 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:15:34 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:15:34 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:15:34 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:15:34 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:15:34 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:15:34 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae08b430a538aed08000001 (retry in 2s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:15:36 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae08b430a538aed08000001: Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"message":"The model `llama3-groq-70b-8192-tool-use-preview` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendati. Check https://console.groq.com/docs/deprecations for current models.
+2026-10-27 14:15:36 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:37 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:37 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:15:37 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:15:37 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:15:37 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:15:37 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:15:37 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:15:37 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:15:37 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:15:37 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae067580a538ac908000001 (retry in 1s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:15:38 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:38 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:38 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:15:39 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:15:39 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:15:39 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:15:39 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:15:39 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:15:39 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:15:39 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:15:39 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae067580a538ac908000001 (retry in 2s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:15:41 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae067580a538ac908000001: Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"message":"The model `llama3-groq-70b-8192-tool-use-preview` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendati. Check https://console.groq.com/docs/deprecations for current models.
+2026-10-27 14:15:41 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:41 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:41 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:15:41 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:15:41 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:15:42 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:15:42 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:15:42 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:15:42 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:15:42 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:15:42 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae05c120a538ae0ea000001 (retry in 1s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:15:43 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:43 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:43 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:15:43 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:15:43 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:15:44 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:15:44 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:15:44 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:15:44 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:15:44 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:15:44 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae05c120a538ae0ea000001 (retry in 2s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:15:46 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae05c120a538ae0ea000001: Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"message":"The model `llama3-groq-70b-8192-tool-use-preview` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendati. Check https://console.groq.com/docs/deprecations for current models.
+2026-10-27 14:15:46 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:46 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:46 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:15:46 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:15:46 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:15:46 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:15:46 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:15:47 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:15:47 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:15:47 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:15:47 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae04dec0a538afb61000001 (retry in 1s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:15:48 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:48 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:48 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:15:48 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:15:48 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:15:48 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:15:48 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:15:48 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:15:48 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:15:48 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:15:48 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae04dec0a538afb61000001 (retry in 2s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:15:50 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae04dec0a538afb61000001: Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"message":"The model `llama3-groq-70b-8192-tool-use-preview` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendati. Check https://console.groq.com/docs/deprecations for current models.
+2026-10-27 14:15:51 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:51 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:51 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:15:51 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:15:51 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:15:51 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:15:51 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:15:51 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:15:51 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:15:51 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:15:51 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf5b450a538a36d9000001 (retry in 1s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:15:52 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:53 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:53 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:15:53 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:15:53 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:15:53 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:15:53 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:15:53 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:15:53 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:15:53 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:15:53 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf5b450a538a36d9000001 (retry in 2s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:15:55 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf5b450a538a36d9000001: Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"message":"The model `llama3-groq-70b-8192-tool-use-preview` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendati. Check https://console.groq.com/docs/deprecations for current models.
+2026-10-27 14:15:55 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:55 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:55 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:15:56 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:15:56 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:15:56 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:15:56 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:15:56 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:15:56 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:15:56 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:15:56 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf4f3c0a538aff74000001 (retry in 1s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:15:57 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:57 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:15:57 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:15:57 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:15:57 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:15:58 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:15:58 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:15:58 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:15:58 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:15:58 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:15:58 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf4f3c0a538aff74000001 (retry in 2s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:16:00 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf4f3c0a538aff74000001: Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"message":"The model `llama3-groq-70b-8192-tool-use-preview` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendati. Check https://console.groq.com/docs/deprecations for current models.
+2026-10-27 14:16:00 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:00 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:00 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:16:00 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:16:00 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:16:00 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:16:00 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:16:01 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:16:01 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:16:01 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:16:01 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf3db50a538aae63000001 (retry in 1s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:16:02 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:02 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:02 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:16:02 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:16:02 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:16:02 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:16:02 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:16:02 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:16:02 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:16:03 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:16:03 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf3db50a538aae63000001 (retry in 2s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:16:05 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf3db50a538aae63000001: Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"message":"The model `llama3-groq-70b-8192-tool-use-preview` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendati. Check https://console.groq.com/docs/deprecations for current models.
+2026-10-27 14:16:05 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:05 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:05 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:16:05 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:16:05 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:16:05 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:16:05 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:16:05 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:16:05 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:16:05 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:16:05 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf393d0a538aa46b000001 (retry in 1s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:16:06 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:07 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:07 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:16:07 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:16:07 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:16:07 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:16:07 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:16:07 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:16:07 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:16:07 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:16:07 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf393d0a538aa46b000001 (retry in 2s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:16:09 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf393d0a538aa46b000001: Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"message":"The model `llama3-groq-70b-8192-tool-use-preview` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendati. Check https://console.groq.com/docs/deprecations for current models.
+2026-10-27 14:16:09 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:09 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:09 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:16:10 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:16:10 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:16:10 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:16:10 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:16:10 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:16:10 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:16:10 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:16:10 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf21940a538ad8d9000001 (retry in 1s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:16:11 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:11 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:11 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:16:11 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:16:11 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:16:12 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:16:12 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:16:12 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:16:12 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:16:12 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:16:12 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf21940a538ad8d9000001 (retry in 2s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:16:14 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf21940a538ad8d9000001: Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"message":"The model `llama3-groq-70b-8192-tool-use-preview` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendati. Check https://console.groq.com/docs/deprecations for current models.
+2026-10-27 14:16:14 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:14 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:14 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:16:14 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:16:14 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:16:14 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:16:14 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:16:15 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:16:15 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:16:15 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:16:15 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf11330a538ad8c5000001 (retry in 1s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:16:16 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:16 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-27 14:16:16 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-27 14:16:16 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-27 14:16:16 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-27 14:16:16 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-27 14:16:16 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-27 14:16:16 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-27 14:16:16 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-27 14:16:16 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-27 14:16:16 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf11330a538ad8c5000001 (retry in 2s): Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"m
+2026-10-27 14:16:18 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf11330a538ad8c5000001: Groq: all 10 models returned model_not_found / decommissioned. Last error: Groq model 'llama3-groq-70b-8192-tool-use-preview' decommissioned (400): {"error":{"message":"The model `llama3-groq-70b-8192-tool-use-preview` has been decommissioned and is no longer supported. Please refer to https://console.groq.com/docs/deprecations for a recommendati. Check https://console.groq.com/docs/deprecations for current models.
+2026-10-27 14:16:18 | INFO    | Dashboard: regenerated HTML with 0 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-10-27 14:16:18 | INFO    | Dashboard: wrote JSON array with 0 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-10-27 14:16:18 | INFO    | Cycle complete: {'scraped': 15, 'new': 10, 'sent': 0, 'skipped': 0, 'errors': 10}
+2026-10-27 14:16:18 | INFO    | ===== Bid News Agent finished =====
