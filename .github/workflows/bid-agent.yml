@@ -25,10 +25,9 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    # Bumped from 10 → 25 min. Gemini free tier occasionally returns
-    # 503 "high demand" errors — each failed item retries 3× with
-    # 30/60/90s backoff, so a full 15-item cycle can take ~20 min
-    # during demand spikes. 25 min gives comfortable headroom.
+    # 25-min timeout gives comfortable headroom. Groq is fast (~1s
+    # per call), but Gemini (used as fallback) can be slow during
+    # demand spikes.
     timeout-minutes: 25
 
     steps:
@@ -45,11 +44,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      # CRITICAL: use a UNIQUE key per run for save, with restore-keys
-      # falling back to ANY previous bid-agent-dedupe-* entry.
-      # If we used the same key for restore AND save, the save step
-      # would SKIP (because cache hit during restore means "key exists")
-      # and our updated dedupe DB would never persist → duplicate alerts.
+      # Restore the SQLite dedupe DB so we don't re-send tenders that
+      # were already notified in a previous run. Uses a unique key per
+      # run for save, with restore-keys falling back to ANY previous
+      # bid-agent-dedupe-* entry.
       - name: Restore dedupe DB from cache
         id: restore-cache
         uses: actions/cache@v4
@@ -60,30 +58,29 @@ jobs:
             bid-agent-dedupe-
 
       # Make sure the data/ directory exists even if cache restore
-      # missed (first-ever run) — prevents the agent from crashing
-      # when it tries to open the SQLite DB.
+      # missed (first-ever run).
       - name: Ensure data/ directory exists
         run: mkdir -p data
 
-      # Run one agent cycle. Secrets are passed via env vars; the
-      # agent reads them via os.environ.get().
+      # Run one agent cycle. Secrets are passed via env vars.
+      # GROQ_API_KEY is the PRIMARY backend (fast + 1000 req/day).
+      # GEMINI_API_KEY is the FALLBACK (only used if GROQ_API_KEY
+      # is missing or fails).
       - name: Run the agent
         env:
           TELEGRAM_BOT_TOKEN:   ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID:     ${{ secrets.TELEGRAM_CHAT_ID }}
           SITE_LOGIN_EMAIL:     ${{ secrets.SITE_LOGIN_EMAIL }}
           SITE_LOGIN_PASSWORD:  ${{ secrets.SITE_LOGIN_PASSWORD }}
+          GROQ_API_KEY:          ${{ secrets.GROQ_API_KEY }}
           GEMINI_API_KEY:        ${{ secrets.GEMINI_API_KEY }}
           USER_AGENT: "Mozilla/5.0 (compatible; BidNewsAgent/1.0)"
         run: |
           python bid_agent.py
 
-      # Save the updated dedupe DB under a NEW unique key. This
-      # always runs (`if: always()`) so we don't lose already-sent
-      # tender IDs even if the agent step partially failed.
-      # We use the dedicated `actions/cache/save` action — it
-      # writes a new cache entry that the next run will pick up via
-      # restore-keys fallback.
+      # Save the updated dedupe DB under a NEW unique key. Always
+      # runs so we don't lose already-sent tender IDs even on partial
+      # failure.
       - name: Save updated dedupe DB to cache
         if: always()
         uses: actions/cache/save@v4
@@ -92,8 +89,6 @@ jobs:
           key: bid-agent-dedupe-${{ github.run_id }}
 
       # Optional: upload agent.log as a downloadable artifact.
-      # Visible in the Actions UI under the run → "agent-log" artifact.
-      # Retained 14 days.
       - name: Attach agent.log as artifact
         if: always()
         uses: actions/upload-artifact@v4
