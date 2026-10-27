@@ -338,6 +338,242 @@ class SentStore:
 
 
 # ---------------------------------------------------------------------------
+# Dashboard writer (publishes sent tenders to a static web page)
+# ---------------------------------------------------------------------------
+class DashboardWriter:
+    """Appends each sent tender to data/tenders.jsonl and regenerates
+    data/index.html — a mobile-friendly static dashboard that mirrors
+    what was sent to Telegram. The workflow deploys this to GitHub
+    Pages so the user has a public web URL with the same alerts.
+    """
+
+    def __init__(self, jsonl_path: str, html_path: str, logger: logging.Logger) -> None:
+        self.jsonl_path = jsonl_path
+        self.html_path = html_path
+        # Plain JSON array file (easier for Windows / mobile apps to
+        # consume via a single HTTP GET + deserialize). Same data as
+        # the JSONL, just formatted as a single JSON array.
+        self.json_path = os.path.join(os.path.dirname(jsonl_path), "tenders.json")
+        self.logger = logger
+        os.makedirs(os.path.dirname(jsonl_path), exist_ok=True)
+        os.makedirs(os.path.dirname(html_path), exist_ok=True)
+
+    def append_tender(
+        self,
+        item: "BidItem",
+        judgment: "LLMJudgment",
+    ) -> None:
+        """Append one sent tender to the JSONL log. Skips if URL already
+        present (idempotent — safe to call multiple times for the same item)."""
+        # Read existing entries to check for duplicates
+        existing_urls: set[str] = set()
+        try:
+            with open(self.jsonl_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        entry = json.loads(line)
+                        if "source_url" in entry:
+                            existing_urls.add(entry["source_url"])
+                    except json.JSONDecodeError:
+                        continue
+        except FileNotFoundError:
+            pass
+
+        if item.source_url in existing_urls:
+            return  # Already in dashboard — don't duplicate
+
+        entry = {
+            "title": item.title,
+            "category": judgment.category,
+            "company_name": item.company_name,
+            "deadline": item.deadline,
+            "opening_date": item.opening_date,
+            "published_at": item.published_at,
+            "source_name": item.source_name,
+            "bid_doc_price": item.bid_doc_price,
+            "bid_bond": item.bid_bond,
+            "region": item.region,
+            "budget": judgment.budget,
+            "summary": judgment.summary,
+            "relevance_score": judgment.relevance_score,
+            "source_url": item.source_url,
+            "site_name": item.site_name,
+            "found_at": item.found_at,
+        }
+        with open(self.jsonl_path, "a", encoding="utf-8") as f:
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+        self.logger.info("Dashboard: appended tender %s", item.source_url[-12:])
+
+    def regenerate_html(self, site_name: str = "Bid News Agent") -> None:
+        """Read all tenders from the JSONL file and write:
+          - data/index.html  (mobile-friendly static dashboard)
+          - data/tenders.json (plain JSON array — for Windows / mobile app consumption)
+        """
+        tenders: list[dict] = []
+        try:
+            with open(self.jsonl_path, "r", encoding="utf-8") as f:
+                for line in f:
+                    line = line.strip()
+                    if not line:
+                        continue
+                    try:
+                        tenders.append(json.loads(line))
+                    except json.JSONDecodeError:
+                        continue
+        except FileNotFoundError:
+            pass
+
+        # Newest first
+        tenders.sort(key=lambda t: t.get("found_at", ""), reverse=True)
+
+        html = self._render_html(tenders, site_name)
+        with open(self.html_path, "w", encoding="utf-8") as f:
+            f.write(html)
+        self.logger.info(
+            "Dashboard: regenerated HTML with %d tenders at %s",
+            len(tenders), self.html_path,
+        )
+
+        # Plain JSON array file — one-shot GET + deserialize for apps.
+        with open(self.json_path, "w", encoding="utf-8") as f:
+            json.dump(tenders, f, ensure_ascii=False, indent=2)
+        self.logger.info(
+            "Dashboard: wrote JSON array with %d tenders at %s",
+            len(tenders), self.json_path,
+        )
+
+    def _render_html(self, tenders: list[dict], site_name: str) -> str:
+        """Build the full HTML document."""
+        from html import escape as htmlescape
+
+        cards_html: list[str] = []
+        for t in tenders:
+            title = htmlescape(t.get("title", "(no title)"))
+            category = htmlescape(t.get("category", "Other"))
+            company = htmlescape(t.get("company_name") or "—")
+            deadline = htmlescape(t.get("deadline") or "—")
+            opening = htmlescape(t.get("opening_date") or "—")
+            published = htmlescape(t.get("published_at") or "—")
+            source = htmlescape(t.get("source_name") or "—")
+            doc_price = htmlescape(t.get("bid_doc_price") or "—")
+            bid_bond = htmlescape(t.get("bid_bond") or "—")
+            region = htmlescape(t.get("region") or "—")
+            budget = htmlescape(t.get("budget") or "—")
+            summary = htmlescape(t.get("summary") or "(no summary)")
+            url = htmlescape(t.get("source_url", "#"), quote=True)
+            found = htmlescape(t.get("found_at", ""))
+            score = t.get("relevance_score", 0)
+
+            cards_html.append(f"""
+        <article class="card">
+          <header>
+            <span class="category">{category}</span>
+            <span class="score">Relevance: {score}</span>
+          </header>
+          <h2>{title}</h2>
+          <div class="meta">
+            <div><span>🏢 Organization</span><strong>{company}</strong></div>
+            <div><span>📅 Bid closing</span><strong>{deadline}</strong></div>
+            <div><span>🔓 Bid opening</span><strong>{opening}</strong></div>
+            <div><span>📰 Published</span><strong>{published}</strong></div>
+            <div><span>📊 Source</span><strong>{source}</strong></div>
+            <div><span>💵 Doc price</span><strong>{doc_price}</strong></div>
+            <div><span>🔒 Bid bond</span><strong>{bid_bond}</strong></div>
+            <div><span>🌐 Region</span><strong>{region}</strong></div>
+            <div><span>💰 Budget</span><strong>{budget}</strong></div>
+          </div>
+          <div class="summary">
+            <h3>📋 Summary</h3>
+            <p>{summary}</p>
+          </div>
+          <a class="view-btn" href="{url}" target="_blank" rel="noopener">
+            🔗 View original tender
+          </a>
+          <footer>Spotted: {found}</footer>
+        </article>
+""")
+
+        cards_block = "\n".join(cards_html) if cards_html else """
+        <div class="empty">
+          <h2>No tenders yet</h2>
+          <p>The agent hasn't sent any alerts. Trigger a manual run in the Actions tab to populate this page.</p>
+        </div>
+"""
+
+        return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{htmlescape(site_name)} — Vehicle Tender Dashboard</title>
+  <style>
+    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
+    body {{
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f5f7fa; color: #1a202c; line-height: 1.6;
+      padding: 20px;
+    }}
+    .container {{ max-width: 900px; margin: 0 auto; }}
+    header.page-header {{
+      text-align: center; margin-bottom: 30px; padding-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+    }}
+    header.page-header h1 {{ color: #2c5282; font-size: 1.8rem; }}
+    header.page-header p {{ color: #718096; margin-top: 5px; font-size: 0.95rem; }}
+    .card {{
+      background: white; border-radius: 12px; padding: 20px;
+      margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border-left: 4px solid #4299e1;
+    }}
+    .card header {{
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 12px; font-size: 0.85rem;
+    }}
+    .category {{
+      background: #ebf8ff; color: #2b6cb0; padding: 4px 10px;
+      border-radius: 12px; font-weight: 600;
+    }}
+    .score {{ color: #718096; }}
+    .card h2 {{ font-size: 1.15rem; color: #1a202c; margin-bottom: 15px; line-height: 1.4; }}
+    .meta {{ display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin-bottom: 15px; font-size: 0.9rem; }}
+    .meta div {{ display: flex; flex-direction: column; }}
+    .meta span {{ color: #718096; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; }}
+    .meta strong {{ color: #2d3748; font-weight: 500; }}
+    .summary {{ background: #f7fafc; padding: 12px; border-radius: 8px; margin-bottom: 15px; }}
+    .summary h3 {{ font-size: 0.85rem; color: #4a5568; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }}
+    .summary p {{ font-size: 0.92rem; color: #2d3748; }}
+    .view-btn {{
+      display: inline-block; background: #4299e1; color: white !important;
+      padding: 10px 18px; border-radius: 8px; text-decoration: none;
+      font-weight: 600; font-size: 0.92rem; transition: background 0.2s;
+    }}
+    .view-btn:hover {{ background: #3182ce; }}
+    .card footer {{ margin-top: 12px; font-size: 0.75rem; color: #a0aec0; text-align: right; }}
+    .empty {{ text-align: center; padding: 60px 20px; color: #718096; }}
+    .empty h2 {{ margin-bottom: 10px; color: #4a5568; }}
+    @media (max-width: 600px) {{
+      .meta {{ grid-template-columns: 1fr; }}
+      .card h2 {{ font-size: 1.05rem; }}
+    }}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>🚗 {htmlescape(site_name)}</h1>
+      <p>Vehicle garage maintenance + vehicle purchase tenders from 2merkato</p>
+    </header>
+    {cards_block}
+  </div>
+</body>
+</html>
+"""
+
+
+# ---------------------------------------------------------------------------
 # Scraper
 # ---------------------------------------------------------------------------
 class SiteScraper:
@@ -1183,6 +1419,16 @@ class BidAgent:
             logger=logger,
         )
         self.telegram = self._maybe_init_telegram()
+        # DashboardWriter publishes each sent tender to a static web page
+        # so the user can view all alerts in a browser (mirroring Telegram).
+        # Files live alongside the SQLite DB so they share the same cache
+        # lifecycle on GitHub Actions.
+        data_dir = os.path.dirname(cfg["db_path"])
+        self.dashboard = DashboardWriter(
+            jsonl_path=os.path.join(data_dir, "tenders.jsonl"),
+            html_path=os.path.join(data_dir, "index.html"),
+            logger=logger,
+        )
 
     def _maybe_init_telegram(self) -> TelegramNotifier | None:
         token = os.environ.get("TELEGRAM_BOT_TOKEN", "").strip()
@@ -1270,6 +1516,15 @@ class BidAgent:
                         self.store.mark_sent(
                             item.source_url, item.title, judgment.category, item.site_name
                         )
+                        # Also append to the web dashboard's JSON log
+                        # so the user can see this tender in a browser.
+                        try:
+                            self.dashboard.append_tender(item, judgment)
+                        except Exception as exc:
+                            self.logger.warning(
+                                "Dashboard append failed for %s: %s",
+                                item.source_url, exc,
+                            )
                         stats["sent"] += 1
                         self.logger.info(
                             "Sent: %s (%s, score=%d)",
@@ -1282,6 +1537,14 @@ class BidAgent:
             except Exception:
                 self.logger.error("Site run failed:\n%s", traceback.format_exc())
                 stats["errors"] += 1
+
+        # Regenerate the static HTML dashboard from the JSON log so the
+        # web page reflects all sent tenders (including any from this run).
+        try:
+            site_name = (self.cfg.get("sites") or [{}])[0].get("name", "Bid News Agent")
+            self.dashboard.regenerate_html(site_name=site_name)
+        except Exception as exc:
+            self.logger.warning("Dashboard HTML regenerate failed: %s", exc)
 
         self.logger.info("Cycle complete: %s", stats)
         return stats
