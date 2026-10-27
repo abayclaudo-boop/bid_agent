@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2merkato Tenders — Vehicle Tender Dashboard</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f5f7fa; color: #1a202c; line-height: 1.6;
+      padding: 20px;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    header.page-header {
+      text-align: center; margin-bottom: 30px; padding-bottom: 20px;
+      border-bottom: 2px solid #e2e8f0;
+    }
+    header.page-header h1 { color: #2c5282; font-size: 1.8rem; }
+    header.page-header p { color: #718096; margin-top: 5px; font-size: 0.95rem; }
+    .card {
+      background: white; border-radius: 12px; padding: 20px;
+      margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border-left: 4px solid #4299e1;
+    }
+    .card header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 12px; font-size: 0.85rem;
+    }
+    .category {
+      background: #ebf8ff; color: #2b6cb0; padding: 4px 10px;
+      border-radius: 12px; font-weight: 600;
+    }
+    .score { color: #718096; }
+    .card h2 { font-size: 1.15rem; color: #1a202c; margin-bottom: 15px; line-height: 1.4; }
+    .meta { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin-bottom: 15px; font-size: 0.9rem; }
+    .meta div { display: flex; flex-direction: column; }
+    .meta span { color: #718096; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; }
+    .meta strong { color: #2d3748; font-weight: 500; }
+    .summary { background: #f7fafc; padding: 12px; border-radius: 8px; margin-bottom: 15px; }
+    .summary h3 { font-size: 0.85rem; color: #4a5568; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .summary p { font-size: 0.92rem; color: #2d3748; }
+    .view-btn {
+      display: inline-block; background: #4299e1; color: white !important;
+      padding: 10px 18px; border-radius: 8px; text-decoration: none;
+      font-weight: 600; font-size: 0.92rem; transition: background 0.2s;
+    }
+    .view-btn:hover { background: #3182ce; }
+    .card footer { margin-top: 12px; font-size: 0.75rem; color: #a0aec0; text-align: right; }
+    .empty { text-align: center; padding: 60px 20px; color: #718096; }
+    .empty h2 { margin-bottom: 10px; color: #4a5568; }
+    @media (max-width: 600px) {
+      .meta { grid-template-columns: 1fr; }
+      .card h2 { font-size: 1.05rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="page-header">
+      <h1>🚗 2merkato Tenders</h1>
+      <p>Vehicle garage maintenance + vehicle purchase tenders from 2merkato</p>
+    </header>
+    
+        <div class="empty">
+          <h2>No tenders yet</h2>
+          <p>The agent hasn't sent any alerts. Trigger a manual run in the Actions tab to populate this page.</p>
+        </div>
+
+  </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+2026-10-27 13:19:41 | INFO    | ===== Bid News Agent starting =====
+2026-10-27 13:19:41 | INFO    | Mode: single
+2026-10-27 13:19:41 | INFO    | Dry-run: False
+2026-10-27 13:19:41 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile) — free tier, 1000 req/day
+2026-10-27 13:19:41 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-10-27 13:19:42 | INFO    | Login step 1 OK — CSRF token: UZIJrbFo1JFZ…
+2026-10-27 13:19:42 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-10-27 13:19:43 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-10-27 13:19:43 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-10-27 13:19:43 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-10-27 13:19:43 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-10-27 13:19:43 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae08b430a538aed08000001 (retry in 1s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:19:44 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae08b430a538aed08000001 (retry in 2s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:19:46 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae08b430a538aed08000001: Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+2026-10-27 13:19:47 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae067580a538ac908000001 (retry in 1s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:19:48 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae067580a538ac908000001 (retry in 2s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:19:50 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae067580a538ac908000001: Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+2026-10-27 13:19:50 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae05c120a538ae0ea000001 (retry in 1s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:19:51 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae05c120a538ae0ea000001 (retry in 2s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:19:53 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae05c120a538ae0ea000001: Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+2026-10-27 13:19:53 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae04dec0a538afb61000001 (retry in 1s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:19:54 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae04dec0a538afb61000001 (retry in 2s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:19:56 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae04dec0a538afb61000001: Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+2026-10-27 13:19:56 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf5b450a538a36d9000001 (retry in 1s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:19:57 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf5b450a538a36d9000001 (retry in 2s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:19:59 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf5b450a538a36d9000001: Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+2026-10-27 13:20:00 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf4f3c0a538aff74000001 (retry in 1s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:20:01 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf4f3c0a538aff74000001 (retry in 2s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:20:03 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf4f3c0a538aff74000001: Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+2026-10-27 13:20:03 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf3db50a538aae63000001 (retry in 1s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:20:04 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf3db50a538aae63000001 (retry in 2s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:20:06 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf3db50a538aae63000001: Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+2026-10-27 13:20:06 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf393d0a538aa46b000001 (retry in 1s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:20:07 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf393d0a538aa46b000001 (retry in 2s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:20:09 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf393d0a538aa46b000001: Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+2026-10-27 13:20:09 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf21940a538ad8d9000001 (retry in 1s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:20:10 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf21940a538ad8d9000001 (retry in 2s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:20:12 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf21940a538ad8d9000001: Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+2026-10-27 13:20:13 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6adf11330a538ad8c5000001 (retry in 1s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:20:14 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6adf11330a538ad8c5000001 (retry in 2s): Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"
+2026-10-27 13:20:16 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6adf11330a538ad8c5000001: Groq HTTP 404: {"error":{"message":"The model `llama-3.3-70b-versatile` does not exist or you do not have access to it.","type":"invalid_request_error","code":"model_not_found"}}
+
+2026-10-27 13:20:16 | INFO    | Dashboard: regenerated HTML with 0 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-10-27 13:20:16 | INFO    | Dashboard: wrote JSON array with 0 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-10-27 13:20:16 | INFO    | Cycle complete: {'scraped': 15, 'new': 10, 'sent': 0, 'skipped': 0, 'errors': 10}
+2026-10-27 13:20:16 | INFO    | ===== Bid News Agent finished =====
