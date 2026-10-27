@@ -1227,8 +1227,18 @@ matching this exact schema:
                 except _GroqModelNotFoundError as exc:
                     last_err = exc
                     continue
-                except (RateLimitError, Exception):
+                except RateLimitError:
+                    # 429/503 = quota issue, don't try other models
                     raise
+                except Exception as exc:
+                    # Other errors (max_tokens, content filter, etc.)
+                    # Log and try next model — don't abort the whole chain
+                    self.logger.info(
+                        "Groq live model '%s' failed (non-model error) — trying next: %s",
+                        model, str(exc)[:120],
+                    )
+                    last_err = exc
+                    continue
 
         # All fallbacks exhausted — surface the last model_not_found error.
         raise RuntimeError(
@@ -1279,7 +1289,10 @@ matching this exact schema:
                 {"role": "user", "content": prompt},
             ],
             "temperature": 0.2,
-            "max_tokens": 1024,
+            # 512 tokens fits all models including small preview models
+            # (e.g. llama-3.2-1b-preview has max_tokens=512). Larger
+            # models accept more, but 512 is enough for our JSON output.
+            "max_tokens": 512,
         }
         # Only enable JSON mode for models that support it (older
         # llama3-* models don't, and sending it causes a 400 error).
