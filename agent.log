@@ -1,37 +1,34 @@
-2026-10-28 12:37:00 | INFO    | ===== Bid News Agent starting =====
-2026-10-28 12:37:00 | INFO    | Mode: single
-2026-10-28 12:37:00 | INFO    | Dry-run: False
-2026-10-28 12:37:00 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-10-28 12:37:00 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-10-28 12:37:01 | INFO    | Login step 1 OK — CSRF token: IEGDulhSqxGs…
-2026-10-28 12:37:01 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-10-28 12:37:02 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-10-28 12:37:03 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-10-28 12:37:03 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-10-28 12:37:03 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-10-28 12:37:03 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-28 12:37:03 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
-2026-10-28 12:37:03 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
-2026-10-28 12:37:03 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
-2026-10-28 12:37:03 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
-2026-10-28 12:37:03 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
-2026-10-28 12:37:04 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
-2026-10-28 12:37:04 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
-2026-10-28 12:37:04 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
-2026-10-28 12:37:04 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
-2026-10-28 12:37:04 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
-2026-10-28 12:37:04 | INFO    | Groq live model 'canopylabs/orpheus-arabic-saudi' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"The model `canopylabs/orpheus-arabic-saudi` requires terms acceptance. Please have t
-2026-10-28 12:37:04 | INFO    | Groq live model 'whisper-large-v3-turbo' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"The model `whisper-large-v3-turbo` does not support chat completions","type":"invali
-2026-10-28 12:37:05 | INFO    | Groq: using model 'openai/gpt-oss-20b' (live-list fallback #2)
-2026-10-28 12:37:10 | INFO    | Dashboard: appended tender 8aa242000001
-2026-10-28 12:37:10 | INFO    | Sent: Oromia Bank invites sealed bids from eligible bidders for the procurement of Ele (Vehicle Purchase, score=90)
-2026-10-28 12:37:11 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6ae1b9810a538aa1b8000001 (retry in 1s): Groq choice has no content
-2026-10-28 12:37:14 | WARNING | Could not parse LLM JSON for https://tender.2merkato.com/tenders/6ae1b9810a538aa1b8000001. Raw: {"is_relevant":true,"relevance_score":90,"category":"Vehicle Maintenance","deadline":"2026-11-09","budget":null,"summary":"The Dessie City Administration Urban Infrastructure Development Command is in
-2026-10-28 12:37:17 | WARNING | Could not parse LLM JSON for https://tender.2merkato.com/tenders/6ae1ad250a538a89b8000001. Raw: {"is_relevant":false
-2026-10-28 12:37:17 | WARNING | LLM rate-limited for https://tender.2merkato.com/tenders/6ae1a7ac0a538a8afb000001 (retry in 30s): Groq API returned 429 (transient: rate-limit or high demand)
-2026-10-28 12:37:49 | INFO    | Dashboard: appended tender 8a8afb000001
-2026-10-28 12:37:49 | INFO    | Sent: Sidama Bank invites all interested and eligible bidders for the supply of vehicl (Vehicle Purchase, score=100)
-2026-10-28 12:37:50 | INFO    | Dashboard: regenerated HTML with 8 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-10-28 12:37:50 | INFO    | Dashboard: wrote JSON array with 8 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-10-28 12:37:50 | INFO    | Cycle complete: {'scraped': 15, 'new': 4, 'sent': 2, 'skipped': 6, 'errors': 2}
-2026-10-28 12:37:50 | INFO    | ===== Bid News Agent finished =====
+2026-10-28 18:35:07 | INFO    | ===== Bid News Agent starting =====
+2026-10-28 18:35:07 | INFO    | Mode: single
+2026-10-28 18:35:07 | INFO    | Dry-run: False
+2026-10-28 18:35:07 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-10-28 18:35:07 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-10-28 18:35:08 | INFO    | Login step 1 OK — CSRF token: wWcWgKymvPWZ…
+2026-10-28 18:35:08 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-10-28 18:35:09 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-10-28 18:35:09 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-10-28 18:35:09 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-10-28 18:35:09 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-10-28 18:35:09 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-28 18:35:09 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-28 18:35:09 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-28 18:35:09 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-28 18:35:10 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-28 18:35:10 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-28 18:35:10 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-28 18:35:10 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-28 18:35:10 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-28 18:35:10 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-28 18:35:10 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-10-28 18:35:10 | INFO    | Groq: using model 'qwen/qwen3.8-27b' (live-list fallback #0)
+2026-10-28 18:35:12 | INFO    | Dashboard: appended tender 8abe18000001
+2026-10-28 18:35:12 | INFO    | Sent: Lideta Sub City: Procurement of Maintenance and Repair Service (Vehicle Maintenance, score=95)
+2026-10-28 18:35:15 | INFO    | Dashboard: appended tender 8aa1d0000001
+2026-10-28 18:35:15 | INFO    | Sent: YADAM Foundation – Invitation to Bid (ITB) for the Procurement of Two (2) Fully  (Vehicle Purchase, score=100)
+2026-10-28 18:35:18 | INFO    | Dashboard: appended tender 8aa1b8000001
+2026-10-28 18:35:18 | INFO    | Sent: የደሴ ከተማ አስ/ከተማና መሰረተ ልማት መምሪያ እና በስሩ ላሉ ሴክተር መ/ቤቶች በ2019 ዓ.ም በጀት አመት የተለያዩ ቋሚ እና (Vehicle Maintenance, score=95)
+2026-10-28 18:35:21 | INFO    | Skip (not relevant, score=0): በደ/ምዕ/ኢት/ህ/ክልላዊ/መንግስት በከፋ ዞን የገዋታ ወረዳ ፋይናንስ ጽ/ቤት የተለያዩ ዕቃዎች በግልጽ ጨረታ አወዳድሮ መግዛት 
+2026-10-28 18:35:21 | INFO    | Dashboard: regenerated HTML with 11 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-10-28 18:35:21 | INFO    | Dashboard: wrote JSON array with 11 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-10-28 18:35:21 | INFO    | Cycle complete: {'scraped': 15, 'new': 4, 'sent': 3, 'skipped': 7, 'errors': 0}
+2026-10-28 18:35:21 | INFO    | ===== Bid News Agent finished =====
