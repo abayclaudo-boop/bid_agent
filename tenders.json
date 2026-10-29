@@ -1,5 +1,23 @@
 [
   {
+    "title": "Ministry of Finance :Procurement of Vehicle",
+    "category": "Vehicle Purchase",
+    "company_name": "Ministry of Finance (MoF)",
+    "deadline": "2026-11-09 10:00:00",
+    "opening_date": "2026-11-09 11:00:00",
+    "published_at": "2026-10-29 09:05:00",
+    "source_name": "Government",
+    "bid_doc_price": "300",
+    "bid_bond": "50000 ETB",
+    "region": "Not specified",
+    "budget": "N/A",
+    "summary": "The Ministry of Finance (MoF) is issuing a tender for the procurement of vehicles. Bids must be submitted by November 9, 2026, at 10:00 AM, with bid opening scheduled for the same day at 11:00 AM. The cost to purchase the bid document is 300 ETB, and a bid bond of 50,000 ETB is required. This opportunity is open to qualified suppliers looking to provide motorized vehicles to the Ethiopian government.",
+    "relevance_score": 100,
+    "source_url": "https://tender.2merkato.com/tenders/6ae2e1d90a538a1687000001",
+    "site_name": "2merkato Tenders",
+    "found_at": "2026-10-29T06:38:43+00:00"
+  },
+  {
     "title": "Lideta Sub City: Procurement of Maintenance and Repair Service",
     "category": "Vehicle Maintenance",
     "company_name": "Lideta Sub City Administration Office",

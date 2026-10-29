@@ -1,34 +1,29 @@
-2026-10-28 18:35:07 | INFO    | ===== Bid News Agent starting =====
-2026-10-28 18:35:07 | INFO    | Mode: single
-2026-10-28 18:35:07 | INFO    | Dry-run: False
-2026-10-28 18:35:07 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-10-28 18:35:07 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-10-28 18:35:08 | INFO    | Login step 1 OK — CSRF token: wWcWgKymvPWZ…
-2026-10-28 18:35:08 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-10-28 18:35:09 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-10-28 18:35:09 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-10-28 18:35:09 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-10-28 18:35:09 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-10-28 18:35:09 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-28 18:35:09 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
-2026-10-28 18:35:09 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
-2026-10-28 18:35:09 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
-2026-10-28 18:35:10 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
-2026-10-28 18:35:10 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
-2026-10-28 18:35:10 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
-2026-10-28 18:35:10 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
-2026-10-28 18:35:10 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
-2026-10-28 18:35:10 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
-2026-10-28 18:35:10 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
-2026-10-28 18:35:10 | INFO    | Groq: using model 'qwen/qwen3.8-27b' (live-list fallback #0)
-2026-10-28 18:35:12 | INFO    | Dashboard: appended tender 8abe18000001
-2026-10-28 18:35:12 | INFO    | Sent: Lideta Sub City: Procurement of Maintenance and Repair Service (Vehicle Maintenance, score=95)
-2026-10-28 18:35:15 | INFO    | Dashboard: appended tender 8aa1d0000001
-2026-10-28 18:35:15 | INFO    | Sent: YADAM Foundation – Invitation to Bid (ITB) for the Procurement of Two (2) Fully  (Vehicle Purchase, score=100)
-2026-10-28 18:35:18 | INFO    | Dashboard: appended tender 8aa1b8000001
-2026-10-28 18:35:18 | INFO    | Sent: የደሴ ከተማ አስ/ከተማና መሰረተ ልማት መምሪያ እና በስሩ ላሉ ሴክተር መ/ቤቶች በ2019 ዓ.ም በጀት አመት የተለያዩ ቋሚ እና (Vehicle Maintenance, score=95)
-2026-10-28 18:35:21 | INFO    | Skip (not relevant, score=0): በደ/ምዕ/ኢት/ህ/ክልላዊ/መንግስት በከፋ ዞን የገዋታ ወረዳ ፋይናንስ ጽ/ቤት የተለያዩ ዕቃዎች በግልጽ ጨረታ አወዳድሮ መግዛት 
-2026-10-28 18:35:21 | INFO    | Dashboard: regenerated HTML with 11 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-10-28 18:35:21 | INFO    | Dashboard: wrote JSON array with 11 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-10-28 18:35:21 | INFO    | Cycle complete: {'scraped': 15, 'new': 4, 'sent': 3, 'skipped': 7, 'errors': 0}
-2026-10-28 18:35:21 | INFO    | ===== Bid News Agent finished =====
+2026-10-29 06:38:41 | INFO    | ===== Bid News Agent starting =====
+2026-10-29 06:38:41 | INFO    | Mode: single
+2026-10-29 06:38:41 | INFO    | Dry-run: False
+2026-10-29 06:38:41 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-10-29 06:38:41 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-10-29 06:38:42 | INFO    | Login step 1 OK — CSRF token: c3m1zvKZBI62…
+2026-10-29 06:38:42 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-10-29 06:38:43 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-10-29 06:38:43 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-10-29 06:38:43 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-10-29 06:38:43 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-10-29 06:38:43 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-29 06:38:44 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-29 06:38:44 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-29 06:38:44 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-29 06:38:44 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-29 06:38:44 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-29 06:38:44 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-29 06:38:44 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-29 06:38:44 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-29 06:38:44 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-29 06:38:44 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-10-29 06:38:45 | INFO    | Groq: using model 'qwen/qwen3.8-27b' (live-list fallback #0)
+2026-10-29 06:38:46 | INFO    | Dashboard: appended tender 8a1687000001
+2026-10-29 06:38:46 | INFO    | Sent: Ministry of Finance :Procurement of Vehicle (Vehicle Purchase, score=100)
+2026-10-29 06:38:47 | INFO    | Dashboard: regenerated HTML with 12 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-10-29 06:38:47 | INFO    | Dashboard: wrote JSON array with 12 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-10-29 06:38:47 | INFO    | Cycle complete: {'scraped': 15, 'new': 1, 'sent': 1, 'skipped': 9, 'errors': 0}
+2026-10-29 06:38:47 | INFO    | ===== Bid News Agent finished =====
