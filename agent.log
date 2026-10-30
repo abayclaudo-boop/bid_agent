@@ -1,29 +1,32 @@
-2026-10-30 12:37:57 | INFO    | ===== Bid News Agent starting =====
-2026-10-30 12:37:57 | INFO    | Mode: single
-2026-10-30 12:37:57 | INFO    | Dry-run: False
-2026-10-30 12:37:57 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-10-30 12:37:57 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-10-30 12:37:57 | INFO    | Login step 1 OK — CSRF token: YQaqI9m2wqeb…
-2026-10-30 12:37:57 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-10-30 12:37:58 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-10-30 12:37:59 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-10-30 12:37:59 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-10-30 12:37:59 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-10-30 12:37:59 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-30 12:37:59 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
-2026-10-30 12:37:59 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
-2026-10-30 12:37:59 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
-2026-10-30 12:38:00 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
-2026-10-30 12:38:00 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
-2026-10-30 12:38:00 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
-2026-10-30 12:38:00 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
-2026-10-30 12:38:00 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
-2026-10-30 12:38:00 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
-2026-10-30 12:38:00 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
-2026-10-30 12:38:01 | INFO    | Groq: using model 'openai/gpt-oss-20b' (live-list fallback #0)
-2026-10-30 12:38:02 | INFO    | Dashboard: appended tender 8a11e6000001
-2026-10-30 12:38:02 | INFO    | Sent: Ethio telecom invites all interested and eligible bidders by this National Compe (Vehicle Purchase, score=90)
-2026-10-30 12:38:03 | INFO    | Dashboard: regenerated HTML with 17 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-10-30 12:38:03 | INFO    | Dashboard: wrote JSON array with 17 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-10-30 12:38:03 | INFO    | Cycle complete: {'scraped': 15, 'new': 1, 'sent': 1, 'skipped': 9, 'errors': 0}
-2026-10-30 12:38:03 | INFO    | ===== Bid News Agent finished =====
+2026-10-30 18:35:26 | INFO    | ===== Bid News Agent starting =====
+2026-10-30 18:35:26 | INFO    | Mode: single
+2026-10-30 18:35:26 | INFO    | Dry-run: False
+2026-10-30 18:35:26 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-10-30 18:35:26 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-10-30 18:35:26 | INFO    | Login step 1 OK — CSRF token: CJDAqcSXcIY8…
+2026-10-30 18:35:26 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-10-30 18:35:27 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-10-30 18:35:28 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-10-30 18:35:28 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-10-30 18:35:28 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-10-30 18:35:28 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-30 18:35:28 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-30 18:35:28 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-30 18:35:28 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-30 18:35:28 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-30 18:35:28 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-30 18:35:28 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-30 18:35:29 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-30 18:35:29 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-30 18:35:29 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-30 18:35:29 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-10-30 18:35:29 | INFO    | Groq live model 'canopylabs/orpheus-v1-english' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"The model `canopylabs/orpheus-v1-english` requires terms acceptance. Please have the
+2026-10-30 18:35:29 | INFO    | Groq live model 'whisper-large-v3' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"The model `whisper-large-v3` does not support chat completions","type":"invalid_requ
+2026-10-30 18:35:30 | INFO    | Groq: using model 'qwen/qwen3.8-27b' (live-list fallback #2)
+2026-10-30 18:35:31 | INFO    | Skip (not relevant, score=0): Dashen Breweries S.C invites interested & qualified bidder for supply, commissio
+2026-10-30 18:35:33 | INFO    | Dashboard: appended tender 8a820b000001
+2026-10-30 18:35:33 | INFO    | Sent: Geneva Global Inc. (GGI-Eth) Re-Advertised Invitation to Bid for the Purchase of (Vehicle Purchase, score=100)
+2026-10-30 18:35:34 | INFO    | Dashboard: regenerated HTML with 18 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-10-30 18:35:34 | INFO    | Dashboard: wrote JSON array with 18 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-10-30 18:35:34 | INFO    | Cycle complete: {'scraped': 15, 'new': 2, 'sent': 1, 'skipped': 9, 'errors': 0}
+2026-10-30 18:35:34 | INFO    | ===== Bid News Agent finished =====
