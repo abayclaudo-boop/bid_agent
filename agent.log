@@ -1,15 +1,32 @@
-2026-10-29 18:37:53 | INFO    | ===== Bid News Agent starting =====
-2026-10-29 18:37:53 | INFO    | Mode: single
-2026-10-29 18:37:53 | INFO    | Dry-run: False
-2026-10-29 18:37:53 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-10-29 18:37:53 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-10-29 18:37:53 | INFO    | Login step 1 OK — CSRF token: uOGAf4YGC2wx…
-2026-10-29 18:37:53 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-10-29 18:37:54 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-10-29 18:37:55 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-10-29 18:37:55 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-10-29 18:37:55 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-10-29 18:37:55 | INFO    | Dashboard: regenerated HTML with 15 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-10-29 18:37:55 | INFO    | Dashboard: wrote JSON array with 15 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-10-29 18:37:55 | INFO    | Cycle complete: {'scraped': 15, 'new': 0, 'sent': 0, 'skipped': 10, 'errors': 0}
-2026-10-29 18:37:55 | INFO    | ===== Bid News Agent finished =====
+2026-10-30 06:39:20 | INFO    | ===== Bid News Agent starting =====
+2026-10-30 06:39:20 | INFO    | Mode: single
+2026-10-30 06:39:20 | INFO    | Dry-run: False
+2026-10-30 06:39:20 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-10-30 06:39:20 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-10-30 06:39:20 | INFO    | Login step 1 OK — CSRF token: 1jGBN0BeUcJp…
+2026-10-30 06:39:20 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-10-30 06:39:21 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-10-30 06:39:22 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-10-30 06:39:22 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-10-30 06:39:22 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-10-30 06:39:22 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-30 06:39:22 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-30 06:39:22 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-30 06:39:22 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-30 06:39:22 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-30 06:39:22 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-30 06:39:22 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-30 06:39:23 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-30 06:39:23 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-30 06:39:23 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-30 06:39:23 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-10-30 06:39:23 | INFO    | Groq live model 'openai/gpt-oss-safeguard-20b' failed (non-model error) — trying next: Groq HTTP 413: {"error":{"message":"Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m5
+2026-10-30 06:39:23 | INFO    | Groq live model 'meta-llama/llama-prompt-guard-2-22m' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"failed to template request: failed to render text output: messages must contains a s
+2026-10-30 06:39:23 | INFO    | Groq live model 'whisper-large-v3-turbo' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"The model `whisper-large-v3-turbo` does not support chat completions","type":"invali
+2026-10-30 06:39:24 | INFO    | Groq: using model 'allam-2-7b' (live-list fallback #3)
+2026-10-30 06:39:25 | INFO    | Dashboard: appended tender 8a0b19000001
+2026-10-30 06:39:25 | INFO    | Sent: Addis Ababa Road Authority: የቀላልና ከባድ ተሽከርካሪዎችና ማሽነሪዎች የራዲያተር ጥገና አገልግሎት ግዥ (Vehicle Purchase and Maintenance, score=90)
+2026-10-30 06:39:26 | INFO    | Dashboard: regenerated HTML with 16 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-10-30 06:39:26 | INFO    | Dashboard: wrote JSON array with 16 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-10-30 06:39:26 | INFO    | Cycle complete: {'scraped': 15, 'new': 1, 'sent': 1, 'skipped': 9, 'errors': 0}
+2026-10-30 06:39:26 | INFO    | ===== Bid News Agent finished =====
