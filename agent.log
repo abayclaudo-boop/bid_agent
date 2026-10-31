@@ -1,33 +1,32 @@
-2026-10-31 12:34:34 | INFO    | ===== Bid News Agent starting =====
-2026-10-31 12:34:34 | INFO    | Mode: single
-2026-10-31 12:34:34 | INFO    | Dry-run: False
-2026-10-31 12:34:34 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-10-31 12:34:34 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-10-31 12:34:35 | INFO    | Login step 1 OK — CSRF token: 4R532NvlMOZd…
-2026-10-31 12:34:35 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-10-31 12:34:35 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-10-31 12:34:36 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-10-31 12:34:36 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-10-31 12:34:36 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-10-31 12:34:36 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-10-31 12:34:36 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
-2026-10-31 12:34:36 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
-2026-10-31 12:34:36 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
-2026-10-31 12:34:36 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
-2026-10-31 12:34:36 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
-2026-10-31 12:34:37 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
-2026-10-31 12:34:37 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
-2026-10-31 12:34:37 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
-2026-10-31 12:34:37 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
-2026-10-31 12:34:37 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
-2026-10-31 12:34:38 | INFO    | Groq: using model 'openai/gpt-oss-20b' (live-list fallback #0)
-2026-10-31 12:34:39 | INFO    | Skip (not relevant, score=0): የአ/ቃ/ክ/ከተማ ዲዛይንና ግንባታ ሥራዎች ፑል የመንግስት ግዥ ቡድን ለሴክተሮች የሚያስፈልጉ የተለያዩ ዕቃዎችን በግልፅ ጨረታ 
-2026-10-31 12:34:41 | INFO    | Skip (not relevant, score=0): የደቡብ ኢት/ያ ክልል ፖሊስ ኮሚሽን በቀን 08/02/2019 ዓ/ም አገር አቀፍ ጨረታ ለተቋሙ የሚያስፈልጉ የተለያዩ ግዥዎች ለመ
-2026-10-31 12:34:42 | WARNING | Could not parse LLM JSON for https://tender.2merkato.com/tenders/6ae5adbd0a538a031e000001. Raw: {"is_relevant":true,"relevance_score":90,"category":"Vehicle Purchase","deadline":"2026-11-16","budget":"Bid bond: 300,000.00 Birr; Bid document price: 1,000.00 Birr","summary":"Dashen Breweries S.C. 
-2026-10-31 12:34:42 | WARNING | LLM rate-limited for https://tender.2merkato.com/tenders/6ae5a6ce0a538a4c6e000001 (retry in 30s): Groq API returned 429 (transient: rate-limit or high demand)
-2026-10-31 12:35:13 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6ae5a6ce0a538a4c6e000001 (retry in 2s): Groq choice has no content
-2026-10-31 12:35:15 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6ae5a6ce0a538a4c6e000001: Groq choice has no content
-2026-10-31 12:35:15 | INFO    | Dashboard: regenerated HTML with 18 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-10-31 12:35:15 | INFO    | Dashboard: wrote JSON array with 18 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-10-31 12:35:15 | INFO    | Cycle complete: {'scraped': 15, 'new': 4, 'sent': 0, 'skipped': 8, 'errors': 2}
-2026-10-31 12:35:15 | INFO    | ===== Bid News Agent finished =====
+2026-10-31 18:30:10 | INFO    | ===== Bid News Agent starting =====
+2026-10-31 18:30:10 | INFO    | Mode: single
+2026-10-31 18:30:10 | INFO    | Dry-run: False
+2026-10-31 18:30:10 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-10-31 18:30:10 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-10-31 18:30:11 | INFO    | Login step 1 OK — CSRF token: N32lNQvHkeRT…
+2026-10-31 18:30:11 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-10-31 18:30:12 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-10-31 18:30:12 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-10-31 18:30:12 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-10-31 18:30:12 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-10-31 18:30:12 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-10-31 18:30:12 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-10-31 18:30:13 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-10-31 18:30:13 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-10-31 18:30:13 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-10-31 18:30:13 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-10-31 18:30:13 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-10-31 18:30:13 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-10-31 18:30:13 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-10-31 18:30:13 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-10-31 18:30:13 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-10-31 18:30:14 | INFO    | Groq: using model 'openai/gpt-oss-120b' (live-list fallback #0)
+2026-10-31 18:30:16 | INFO    | Dashboard: appended tender 8a031e000001
+2026-10-31 18:30:16 | INFO    | Sent: Dashen Breweries S.C invites interested & qualified bidder for supply, commissio (Vehicle Purchase, score=90)
+2026-10-31 18:30:18 | WARNING | Could not parse LLM JSON for https://tender.2merkato.com/tenders/6ae5a6ce0a538a4c6e000001. Raw: {
+  "is_relevant": false,
+
+2026-10-31 18:30:18 | INFO    | Dashboard: regenerated HTML with 19 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-10-31 18:30:18 | INFO    | Dashboard: wrote JSON array with 19 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-10-31 18:30:18 | INFO    | Cycle complete: {'scraped': 15, 'new': 2, 'sent': 1, 'skipped': 8, 'errors': 1}
+2026-10-31 18:30:18 | INFO    | ===== Bid News Agent finished =====
