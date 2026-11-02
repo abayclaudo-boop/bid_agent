@@ -1,15 +1,29 @@
-2026-11-02 07:03:56 | INFO    | ===== Bid News Agent starting =====
-2026-11-02 07:03:56 | INFO    | Mode: single
-2026-11-02 07:03:56 | INFO    | Dry-run: False
-2026-11-02 07:03:56 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-11-02 07:03:56 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-11-02 07:03:57 | INFO    | Login step 1 OK — CSRF token: zyemL4jYHh3p…
-2026-11-02 07:03:57 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-11-02 07:03:57 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-11-02 07:03:58 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-11-02 07:03:58 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-11-02 07:03:58 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-11-02 07:03:58 | INFO    | Dashboard: regenerated HTML with 19 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-11-02 07:03:58 | INFO    | Dashboard: wrote JSON array with 19 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-11-02 07:03:58 | INFO    | Cycle complete: {'scraped': 15, 'new': 0, 'sent': 0, 'skipped': 10, 'errors': 0}
-2026-11-02 07:03:58 | INFO    | ===== Bid News Agent finished =====
+2026-11-02 12:50:52 | INFO    | ===== Bid News Agent starting =====
+2026-11-02 12:50:52 | INFO    | Mode: single
+2026-11-02 12:50:52 | INFO    | Dry-run: False
+2026-11-02 12:50:52 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-11-02 12:50:52 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-11-02 12:50:53 | INFO    | Login step 1 OK — CSRF token: ahQR2d5OsgZI…
+2026-11-02 12:50:53 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-11-02 12:50:53 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-11-02 12:50:54 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-11-02 12:50:54 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-11-02 12:50:54 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-11-02 12:50:54 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-11-02 12:50:54 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-11-02 12:50:54 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-11-02 12:50:54 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-11-02 12:50:54 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-11-02 12:50:55 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-11-02 12:50:55 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-11-02 12:50:55 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-11-02 12:50:55 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-11-02 12:50:55 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-11-02 12:50:55 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-11-02 12:50:55 | INFO    | Groq live model 'meta-llama/llama-prompt-guard-2-22m' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"failed to template request: failed to render text output: messages must contains a s
+2026-11-02 12:50:56 | INFO    | Groq: using model 'openai/gpt-oss-120b' (live-list fallback #1)
+2026-11-02 12:50:57 | INFO    | Skip (not relevant, score=0): Hyatt Regency Addis Ababa Hotel and Marcus Addis Restaurant & Sky Bar, invites s
+2026-11-02 12:50:57 | INFO    | Dashboard: regenerated HTML with 19 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-11-02 12:50:57 | INFO    | Dashboard: wrote JSON array with 19 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-11-02 12:50:57 | INFO    | Cycle complete: {'scraped': 15, 'new': 1, 'sent': 0, 'skipped': 10, 'errors': 0}
+2026-11-02 12:50:57 | INFO    | ===== Bid News Agent finished =====
