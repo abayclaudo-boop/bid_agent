@@ -1,15 +1,15 @@
-2026-11-01 18:29:54 | INFO    | ===== Bid News Agent starting =====
-2026-11-01 18:29:54 | INFO    | Mode: single
-2026-11-01 18:29:54 | INFO    | Dry-run: False
-2026-11-01 18:29:54 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-11-01 18:29:54 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-11-01 18:29:55 | INFO    | Login step 1 OK — CSRF token: lLcGw0JN6NoZ…
-2026-11-01 18:29:55 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-11-01 18:29:56 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-11-01 18:29:56 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-11-01 18:29:56 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-11-01 18:29:56 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-11-01 18:29:56 | INFO    | Dashboard: regenerated HTML with 19 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-11-01 18:29:56 | INFO    | Dashboard: wrote JSON array with 19 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-11-01 18:29:56 | INFO    | Cycle complete: {'scraped': 15, 'new': 0, 'sent': 0, 'skipped': 10, 'errors': 0}
-2026-11-01 18:29:56 | INFO    | ===== Bid News Agent finished =====
+2026-11-02 07:03:56 | INFO    | ===== Bid News Agent starting =====
+2026-11-02 07:03:56 | INFO    | Mode: single
+2026-11-02 07:03:56 | INFO    | Dry-run: False
+2026-11-02 07:03:56 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-11-02 07:03:56 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-11-02 07:03:57 | INFO    | Login step 1 OK — CSRF token: zyemL4jYHh3p…
+2026-11-02 07:03:57 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-11-02 07:03:57 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-11-02 07:03:58 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-11-02 07:03:58 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-11-02 07:03:58 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-11-02 07:03:58 | INFO    | Dashboard: regenerated HTML with 19 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-11-02 07:03:58 | INFO    | Dashboard: wrote JSON array with 19 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-11-02 07:03:58 | INFO    | Cycle complete: {'scraped': 15, 'new': 0, 'sent': 0, 'skipped': 10, 'errors': 0}
+2026-11-02 07:03:58 | INFO    | ===== Bid News Agent finished =====
