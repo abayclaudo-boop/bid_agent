@@ -1,31 +1,31 @@
-2026-11-04 06:56:38 | INFO    | ===== Bid News Agent starting =====
-2026-11-04 06:56:38 | INFO    | Mode: single
-2026-11-04 06:56:38 | INFO    | Dry-run: False
-2026-11-04 06:56:38 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-11-04 06:56:38 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-11-04 06:56:39 | INFO    | Login step 1 OK — CSRF token: Y9lQAejj4Nk4…
-2026-11-04 06:56:39 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-11-04 06:56:40 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-11-04 06:56:40 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-11-04 06:56:40 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-11-04 06:56:40 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-11-04 06:56:40 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-11-04 06:56:40 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
-2026-11-04 06:56:40 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
-2026-11-04 06:56:41 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
-2026-11-04 06:56:41 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
-2026-11-04 06:56:41 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
-2026-11-04 06:56:41 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
-2026-11-04 06:56:41 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
-2026-11-04 06:56:41 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
-2026-11-04 06:56:41 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
-2026-11-04 06:56:41 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
-2026-11-04 06:56:41 | INFO    | Groq live model 'meta-llama/llama-prompt-guard-2-22m' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"failed to template request: failed to render text output: messages must contains a s
-2026-11-04 06:56:42 | INFO    | Groq: using model 'qwen/qwen3.8-27b' (live-list fallback #1)
-2026-11-04 06:56:43 | INFO    | Skip (not relevant, score=0): የአቃቂ ቃሊቲ ክፍለ ከተማ ዋ/ስ/አስፈጻሚ የመንግስት ግዥ አስተዳደር ቡድን የተለያዩ አገልግሎቶች እና እቃዎችን በጨረታ አወዳድ
-2026-11-04 06:56:45 | INFO    | Dashboard: appended tender 8a3be1000001
-2026-11-04 06:56:45 | INFO    | Sent: በሲዳማ ብ/ክ/መ/ እንስሳት ሀብት ልማት ቢሮ የሀዋሳ ዳልጋ ከብት አባላዘር ማምረቻ፣ ማቀነባበሪያና ማሰራጫ ማዕከል በ2019 በ (Vehicle Maintenance, score=95)
-2026-11-04 06:56:46 | INFO    | Dashboard: regenerated HTML with 24 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-11-04 06:56:46 | INFO    | Dashboard: wrote JSON array with 24 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-11-04 06:56:46 | INFO    | Cycle complete: {'scraped': 15, 'new': 2, 'sent': 1, 'skipped': 9, 'errors': 0}
-2026-11-04 06:56:46 | INFO    | ===== Bid News Agent finished =====
+2026-11-04 12:49:08 | INFO    | ===== Bid News Agent starting =====
+2026-11-04 12:49:08 | INFO    | Mode: single
+2026-11-04 12:49:08 | INFO    | Dry-run: False
+2026-11-04 12:49:08 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-11-04 12:49:08 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-11-04 12:49:09 | INFO    | Login step 1 OK — CSRF token: kdmFPD9m4Ltn…
+2026-11-04 12:49:09 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-11-04 12:49:10 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-11-04 12:49:11 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-11-04 12:49:11 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-11-04 12:49:11 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-11-04 12:49:11 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-11-04 12:49:11 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-11-04 12:49:11 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-11-04 12:49:11 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-11-04 12:49:11 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-11-04 12:49:11 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-11-04 12:49:11 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-11-04 12:49:11 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-11-04 12:49:11 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-11-04 12:49:11 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-11-04 12:49:12 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-11-04 12:49:12 | INFO    | Groq live model 'canopylabs/orpheus-arabic-saudi' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"The model `canopylabs/orpheus-arabic-saudi` requires terms acceptance. Please have t
+2026-11-04 12:49:12 | INFO    | Groq live model 'meta-llama/llama-prompt-guard-2-22m' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"failed to template request: failed to render text output: messages must contains a s
+2026-11-04 12:49:12 | INFO    | Groq: using model 'allam-2-7b' (live-list fallback #2)
+2026-11-04 12:49:14 | INFO    | Dashboard: appended tender 8a07d3000001
+2026-11-04 12:49:14 | INFO    | Sent: Population Services International (PSI) Ethiopia is inviting qualified local ven (Vehicle Purchase, score=80)
+2026-11-04 12:49:15 | INFO    | Dashboard: regenerated HTML with 25 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-11-04 12:49:15 | INFO    | Dashboard: wrote JSON array with 25 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-11-04 12:49:15 | INFO    | Cycle complete: {'scraped': 15, 'new': 1, 'sent': 1, 'skipped': 9, 'errors': 0}
+2026-11-04 12:49:15 | INFO    | ===== Bid News Agent finished =====
