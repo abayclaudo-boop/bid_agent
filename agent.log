@@ -1,15 +1,32 @@
-2026-11-04 18:46:18 | INFO    | ===== Bid News Agent starting =====
-2026-11-04 18:46:18 | INFO    | Mode: single
-2026-11-04 18:46:18 | INFO    | Dry-run: False
-2026-11-04 18:46:18 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-11-04 18:46:18 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-11-04 18:46:18 | INFO    | Login step 1 OK — CSRF token: 9donsC1b7GE4…
-2026-11-04 18:46:18 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-11-04 18:46:19 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-11-04 18:46:19 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-11-04 18:46:19 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-11-04 18:46:19 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-11-04 18:46:19 | INFO    | Dashboard: regenerated HTML with 25 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-11-04 18:46:19 | INFO    | Dashboard: wrote JSON array with 25 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-11-04 18:46:19 | INFO    | Cycle complete: {'scraped': 15, 'new': 0, 'sent': 0, 'skipped': 10, 'errors': 0}
-2026-11-04 18:46:19 | INFO    | ===== Bid News Agent finished =====
+2026-11-05 06:59:26 | INFO    | ===== Bid News Agent starting =====
+2026-11-05 06:59:26 | INFO    | Mode: single
+2026-11-05 06:59:26 | INFO    | Dry-run: False
+2026-11-05 06:59:26 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-11-05 06:59:26 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-11-05 06:59:26 | INFO    | Login step 1 OK — CSRF token: mcnHA15OdvSF…
+2026-11-05 06:59:26 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-11-05 06:59:27 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-11-05 06:59:27 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-11-05 06:59:27 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-11-05 06:59:27 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-11-05 06:59:27 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-11-05 06:59:27 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-11-05 06:59:28 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-11-05 06:59:28 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-11-05 06:59:28 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-11-05 06:59:28 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-11-05 06:59:28 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-11-05 06:59:28 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-11-05 06:59:28 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-11-05 06:59:28 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-11-05 06:59:28 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-11-05 06:59:28 | INFO    | Groq live model 'meta-llama/llama-prompt-guard-2-86m' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"failed to template request: failed to render text output: messages must contains a s
+2026-11-05 06:59:29 | INFO    | Groq: using model 'openai/gpt-oss-20b' (live-list fallback #1)
+2026-11-05 06:59:30 | INFO    | Dashboard: appended tender 8ad1d4000001
+2026-11-05 06:59:30 | INFO    | Sent: Pathfinder International/Ethiopia Invites Bids for Electrical Vehicle (EV) Procu (Vehicle Purchase, score=90)
+2026-11-05 06:59:33 | INFO    | Dashboard: appended tender 8a3de3000001
+2026-11-05 06:59:33 | INFO    | Sent: SOS Children’s Villages Ethiopia Invites Potential Suppliers for Invitation to T (Vehicle Purchase, score=90)
+2026-11-05 06:59:34 | INFO    | Dashboard: regenerated HTML with 27 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-11-05 06:59:34 | INFO    | Dashboard: wrote JSON array with 27 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-11-05 06:59:34 | INFO    | Cycle complete: {'scraped': 15, 'new': 2, 'sent': 2, 'skipped': 8, 'errors': 0}
+2026-11-05 06:59:34 | INFO    | ===== Bid News Agent finished =====
