@@ -1,15 +1,30 @@
-2026-11-06 06:58:04 | INFO    | ===== Bid News Agent starting =====
-2026-11-06 06:58:04 | INFO    | Mode: single
-2026-11-06 06:58:04 | INFO    | Dry-run: False
-2026-11-06 06:58:04 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-11-06 06:58:04 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-11-06 06:58:05 | INFO    | Login step 1 OK — CSRF token: sDzqCw7CzZWO…
-2026-11-06 06:58:05 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-11-06 06:58:05 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-11-06 06:58:06 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-11-06 06:58:06 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-11-06 06:58:06 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-11-06 06:58:06 | INFO    | Dashboard: regenerated HTML with 29 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-11-06 06:58:06 | INFO    | Dashboard: wrote JSON array with 29 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-11-06 06:58:06 | INFO    | Cycle complete: {'scraped': 15, 'new': 0, 'sent': 0, 'skipped': 10, 'errors': 0}
-2026-11-06 06:58:06 | INFO    | ===== Bid News Agent finished =====
+2026-11-06 12:50:36 | INFO    | ===== Bid News Agent starting =====
+2026-11-06 12:50:36 | INFO    | Mode: single
+2026-11-06 12:50:36 | INFO    | Dry-run: False
+2026-11-06 12:50:36 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-11-06 12:50:36 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-11-06 12:50:39 | INFO    | Login step 1 OK — CSRF token: kz3lXS0Cznv2…
+2026-11-06 12:50:39 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-11-06 12:50:40 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-11-06 12:50:41 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-11-06 12:50:41 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-11-06 12:50:41 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-11-06 12:50:41 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-11-06 12:50:41 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-11-06 12:50:41 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-11-06 12:50:41 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-11-06 12:50:41 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-11-06 12:50:41 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-11-06 12:50:41 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-11-06 12:50:41 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-11-06 12:50:41 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-11-06 12:50:41 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-11-06 12:50:41 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-11-06 12:50:42 | INFO    | Groq: using model 'qwen/qwen3.8-27b' (live-list fallback #0)
+2026-11-06 12:50:44 | INFO    | Dashboard: appended tender 8a3368000001
+2026-11-06 12:50:44 | INFO    | Sent: Ethio telecom invites all interested and eligible bidders by this National Compe (Vehicle Purchase, score=100)
+2026-11-06 12:50:46 | INFO    | Skip (not relevant, score=0): የሲዳማ ብ//ክ/መ/ መስኖ ልማት ኤጀንሲ የቢሮ መገልገያ ዕቃዎች በግልጽ ጨረታ አወዳድሮ መግዛት ይፈልጋል
+2026-11-06 12:50:46 | INFO    | Dashboard: regenerated HTML with 30 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-11-06 12:50:46 | INFO    | Dashboard: wrote JSON array with 30 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-11-06 12:50:46 | INFO    | Cycle complete: {'scraped': 15, 'new': 2, 'sent': 1, 'skipped': 9, 'errors': 0}
+2026-11-06 12:50:46 | INFO    | ===== Bid News Agent finished =====
