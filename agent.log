@@ -1,15 +1,37 @@
-2026-11-07 06:43:28 | INFO    | ===== Bid News Agent starting =====
-2026-11-07 06:43:28 | INFO    | Mode: single
-2026-11-07 06:43:28 | INFO    | Dry-run: False
-2026-11-07 06:43:28 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-11-07 06:43:28 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-11-07 06:43:29 | INFO    | Login step 1 OK — CSRF token: BKYdUYYMfMje…
-2026-11-07 06:43:29 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-11-07 06:43:30 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-11-07 06:43:30 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-11-07 06:43:30 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-11-07 06:43:30 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-11-07 06:43:30 | INFO    | Dashboard: regenerated HTML with 30 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-11-07 06:43:30 | INFO    | Dashboard: wrote JSON array with 30 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-11-07 06:43:30 | INFO    | Cycle complete: {'scraped': 15, 'new': 0, 'sent': 0, 'skipped': 10, 'errors': 0}
-2026-11-07 06:43:30 | INFO    | ===== Bid News Agent finished =====
+2026-11-07 12:36:56 | INFO    | ===== Bid News Agent starting =====
+2026-11-07 12:36:56 | INFO    | Mode: single
+2026-11-07 12:36:56 | INFO    | Dry-run: False
+2026-11-07 12:36:56 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-11-07 12:36:56 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-11-07 12:36:57 | INFO    | Login step 1 OK — CSRF token: 40nKELXm6M4F…
+2026-11-07 12:36:57 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-11-07 12:36:57 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-11-07 12:36:58 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-11-07 12:36:58 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-11-07 12:36:58 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-11-07 12:36:58 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-11-07 12:36:58 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-11-07 12:36:58 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-11-07 12:36:58 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-11-07 12:36:58 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-11-07 12:36:58 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-11-07 12:36:58 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-11-07 12:36:59 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-11-07 12:36:59 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-11-07 12:36:59 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-11-07 12:36:59 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-11-07 12:36:59 | INFO    | Groq live model 'canopylabs/orpheus-v1-english' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"The model `canopylabs/orpheus-v1-english` requires terms acceptance. Please have the
+2026-11-07 12:37:00 | INFO    | Groq: using model 'openai/gpt-oss-safeguard-20b' (live-list fallback #1)
+2026-11-07 12:37:00 | WARNING | Could not parse LLM JSON for https://tender.2merkato.com/tenders/6aeeeedf0a538a70c7000001. Raw: {
+  "is_relevant": false,
+  "relevance
+2026-11-07 12:37:00 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6aeeedad0a538ac135000001 (retry in 1s): Groq HTTP 413: {"error":{"message":"Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m5w3q4jaezrvmjty5t5tw5xp` service tier `on
+2026-11-07 12:37:01 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6aeeedad0a538ac135000001 (retry in 2s): Groq HTTP 413: {"error":{"message":"Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m5w3q4jaezrvmjty5t5tw5xp` service tier `on
+2026-11-07 12:37:03 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6aeeedad0a538ac135000001: Groq HTTP 413: {"error":{"message":"Request too large for model `openai/gpt-oss-safeguard-20b` in organization `org_01m5w3q4jaezrvmjty5t5tw5xp` service tier `on_demand` on tokens per minute (TPM): Limit 2000, Requested 2564, please reduce your message size and try again. Need more tokens? Upgrade to Dev Tier today
+2026-11-07 12:37:03 | WARNING | LLM rate-limited for https://tender.2merkato.com/tenders/6aeec9140a538ac162000001 (retry in 30s): Groq API returned 429 (transient: rate-limit or high demand)
+2026-11-07 12:37:33 | WARNING | LLM still rate-limited for https://tender.2merkato.com/tenders/6aeec9140a538ac162000001 after retry — giving up (will retry on next scheduled run)
+2026-11-07 12:37:33 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6aeec9140a538ac162000001: Groq API returned 429 (transient: rate-limit or high demand)
+2026-11-07 12:37:33 | INFO    | Dashboard: regenerated HTML with 30 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-11-07 12:37:33 | INFO    | Dashboard: wrote JSON array with 30 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-11-07 12:37:33 | INFO    | Cycle complete: {'scraped': 15, 'new': 3, 'sent': 0, 'skipped': 7, 'errors': 3}
+2026-11-07 12:37:33 | INFO    | ===== Bid News Agent finished =====
