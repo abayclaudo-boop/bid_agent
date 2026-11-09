@@ -1,36 +1,36 @@
-2026-11-09 12:55:20 | INFO    | ===== Bid News Agent starting =====
-2026-11-09 12:55:20 | INFO    | Mode: single
-2026-11-09 12:55:20 | INFO    | Dry-run: False
-2026-11-09 12:55:20 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-11-09 12:55:20 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-11-09 12:55:20 | INFO    | Login step 1 OK — CSRF token: 8o94KtmsxxHj…
-2026-11-09 12:55:20 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-11-09 12:55:21 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-11-09 12:55:22 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-11-09 12:55:22 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-11-09 12:55:22 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-11-09 12:55:22 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-11-09 12:55:22 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
-2026-11-09 12:55:22 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
-2026-11-09 12:55:22 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
-2026-11-09 12:55:22 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
-2026-11-09 12:55:22 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
-2026-11-09 12:55:23 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
-2026-11-09 12:55:23 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
-2026-11-09 12:55:23 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
-2026-11-09 12:55:23 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
-2026-11-09 12:55:23 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
-2026-11-09 12:55:24 | INFO    | Groq: using model 'openai/gpt-oss-120b' (live-list fallback #0)
-2026-11-09 12:55:24 | WARNING | Could not parse LLM JSON for https://tender.2merkato.com/tenders/6af1b6fa0a538a10e8000001. Raw: {
-  "is_relevant": true,
-  "relevance_score": 90,
-  "category": "Vehicle Purchase",
-  "deadline": "2026-11-26",
-  "budget": null,
-  "summary": "Selam Bus S.C. (Selam Public Transport) invites open ten
-2026-11-09 12:55:47 | ERROR   | Telegram send exception: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=20)
-2026-11-09 12:56:10 | ERROR   | Telegram send exception: HTTPSConnectionPool(host='api.telegram.org', port=443): Read timed out. (read timeout=20)
-2026-11-09 12:56:11 | INFO    | Dashboard: regenerated HTML with 32 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-11-09 12:56:11 | INFO    | Dashboard: wrote JSON array with 32 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-11-09 12:56:11 | INFO    | Cycle complete: {'scraped': 15, 'new': 3, 'sent': 0, 'skipped': 7, 'errors': 3}
-2026-11-09 12:56:11 | INFO    | ===== Bid News Agent finished =====
+2026-11-09 18:44:14 | INFO    | ===== Bid News Agent starting =====
+2026-11-09 18:44:14 | INFO    | Mode: single
+2026-11-09 18:44:14 | INFO    | Dry-run: False
+2026-11-09 18:44:14 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-11-09 18:44:14 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-11-09 18:44:15 | INFO    | Login step 1 OK — CSRF token: cx3Tmf5nDxzG…
+2026-11-09 18:44:15 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-11-09 18:44:16 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-11-09 18:44:16 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-11-09 18:44:16 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-11-09 18:44:16 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-11-09 18:44:16 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-11-09 18:44:16 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-11-09 18:44:17 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-11-09 18:44:17 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-11-09 18:44:17 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-11-09 18:44:17 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-11-09 18:44:17 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-11-09 18:44:17 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-11-09 18:44:17 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-11-09 18:44:17 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-11-09 18:44:17 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-11-09 18:44:19 | INFO    | Groq: using model 'openai/gpt-oss-120b' (live-list fallback #0)
+2026-11-09 18:44:20 | INFO    | Dashboard: appended tender 8a2a0a000001
+2026-11-09 18:44:20 | INFO    | Sent: The International Rescue Committee (IRC) invites sealed bids from all eligible a (Vehicle Purchase, score=100)
+2026-11-09 18:44:24 | INFO    | Skip (not relevant, score=0): Population Services International (PSI) Ethiopia is inviting qualified local ven
+2026-11-09 18:44:26 | INFO    | Dashboard: appended tender 8a10e8000001
+2026-11-09 18:44:26 | INFO    | Sent: ሰላም የህዝብ ማመላለሻ አ/ማ የተለያዩ መለዋወጫ እቃዎች፣ የአዉቶቢስ ጎማና ባትሪዎች፣ የሞተር፣ የጊርቦክስና ዲፈረንሽያል ዘይት (Vehicle Purchase, score=95)
+2026-11-09 18:44:30 | INFO    | Dashboard: appended tender 8adbad000001
+2026-11-09 18:44:30 | INFO    | Sent: Nib Insurance Company (S. Co.) invites sealed bid from eligible bidders for the  (Vehicle Purchase, score=95)
+2026-11-09 18:44:34 | INFO    | Dashboard: appended tender 8a6923000001
+2026-11-09 18:44:34 | INFO    | Sent: Ethiopian Customs Commission፦ የባህር ዳር ጉምሩክ ኮሚሽን ቅ/ጽ/ቤት የተለያዩ ተሽከርካሪዎች ጥገና አገልግሎት (Vehicle Maintenance, score=95)
+2026-11-09 18:44:35 | INFO    | Dashboard: regenerated HTML with 36 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-11-09 18:44:35 | INFO    | Dashboard: wrote JSON array with 36 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-11-09 18:44:35 | INFO    | Cycle complete: {'scraped': 15, 'new': 5, 'sent': 4, 'skipped': 6, 'errors': 0}
+2026-11-09 18:44:35 | INFO    | ===== Bid News Agent finished =====
