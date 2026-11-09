@@ -1,15 +1,33 @@
-2026-11-08 18:30:26 | INFO    | ===== Bid News Agent starting =====
-2026-11-08 18:30:26 | INFO    | Mode: single
-2026-11-08 18:30:26 | INFO    | Dry-run: False
-2026-11-08 18:30:26 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-11-08 18:30:26 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-11-08 18:30:26 | INFO    | Login step 1 OK — CSRF token: cQPQFblUduhx…
-2026-11-08 18:30:26 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-11-08 18:30:27 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-11-08 18:30:28 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-11-08 18:30:28 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-11-08 18:30:28 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-11-08 18:30:28 | INFO    | Dashboard: regenerated HTML with 32 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-11-08 18:30:28 | INFO    | Dashboard: wrote JSON array with 32 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-11-08 18:30:28 | INFO    | Cycle complete: {'scraped': 15, 'new': 0, 'sent': 0, 'skipped': 10, 'errors': 0}
-2026-11-08 18:30:28 | INFO    | ===== Bid News Agent finished =====
+2026-11-09 07:10:27 | INFO    | ===== Bid News Agent starting =====
+2026-11-09 07:10:27 | INFO    | Mode: single
+2026-11-09 07:10:27 | INFO    | Dry-run: False
+2026-11-09 07:10:27 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-11-09 07:10:27 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-11-09 07:10:27 | INFO    | Login step 1 OK — CSRF token: YX0nQUTo1Zkf…
+2026-11-09 07:10:27 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-11-09 07:10:28 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-11-09 07:10:29 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-11-09 07:10:29 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-11-09 07:10:29 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-11-09 07:10:29 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-11-09 07:10:29 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-11-09 07:10:29 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-11-09 07:10:29 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-11-09 07:10:30 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-11-09 07:10:30 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-11-09 07:10:30 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-11-09 07:10:30 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-11-09 07:10:30 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-11-09 07:10:30 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-11-09 07:10:30 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-11-09 07:10:31 | INFO    | Groq: using model 'openai/gpt-oss-safeguard-20b' (live-list fallback #0)
+2026-11-09 07:10:31 | WARNING | Could not parse LLM JSON for https://tender.2merkato.com/tenders/6af15a0f0a538a6923000001. Raw: {
+  "is_relevant": true,
+  "relevance_score": 90,
+  "category": "Vehicle Maintenance",
+  "deadline": "2026-11-18",
+  "budget":
+2026-11-09 07:10:31 | INFO    | Dashboard: regenerated HTML with 32 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-11-09 07:10:31 | INFO    | Dashboard: wrote JSON array with 32 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-11-09 07:10:31 | INFO    | Cycle complete: {'scraped': 15, 'new': 1, 'sent': 0, 'skipped': 9, 'errors': 1}
+2026-11-09 07:10:31 | INFO    | ===== Bid News Agent finished =====
