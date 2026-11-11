@@ -1,54 +1,37 @@
-2026-11-10 18:39:19 | INFO    | ===== Bid News Agent starting =====
-2026-11-10 18:39:19 | INFO    | Mode: single
-2026-11-10 18:39:19 | INFO    | Dry-run: False
-2026-11-10 18:39:19 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-11-10 18:39:19 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-11-10 18:39:19 | INFO    | Login step 1 OK — CSRF token: Xscjf9nFmj7N…
-2026-11-10 18:39:19 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-11-10 18:39:20 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-11-10 18:39:21 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-11-10 18:39:21 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-11-10 18:39:21 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-11-10 18:39:21 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-11-10 18:39:21 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
-2026-11-10 18:39:21 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
-2026-11-10 18:39:21 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
-2026-11-10 18:39:21 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
-2026-11-10 18:39:21 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
-2026-11-10 18:39:21 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
-2026-11-10 18:39:21 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
-2026-11-10 18:39:21 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
-2026-11-10 18:39:21 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
-2026-11-10 18:39:21 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
-2026-11-10 18:39:22 | INFO    | Groq live model 'openai/gpt-oss-safeguard-20b' failed (non-model error) — trying next: Groq choice has no content
-2026-11-10 18:39:22 | INFO    | Groq live model 'meta-llama/llama-prompt-guard-2-22m' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"failed to template request: failed to render text output: messages must contains a s
-2026-11-10 18:39:22 | INFO    | Groq live model 'canopylabs/orpheus-arabic-saudi' failed (non-model error) — trying next: Groq HTTP 400: {"error":{"message":"The model `canopylabs/orpheus-arabic-saudi` requires terms acceptance. Please have t
-2026-11-10 18:39:23 | INFO    | Groq: using model 'allam-2-7b' (live-list fallback #3)
-2026-11-10 18:39:23 | WARNING | Could not parse LLM JSON for https://tender.2merkato.com/tenders/6af313630a538a49f8000001. Raw: {
-  "is_relevant": true,
-  "relevance_score": 90,
-  "category": "Vehicle Purchase",
-  "deadline": "2026-12-03 10:00:00",
-  "budget": "500.00 ብር",
-  "summary": "National Alcohol and Liquor Factory (NAL
-2026-11-10 18:39:24 | WARNING | Could not parse LLM JSON for https://tender.2merkato.com/tenders/6af30f9d0a538a4bb2000001. Raw: {
-  "is_relevant": true,
-  "relevance_score": 90,
-  "category": "Vehicle Purchase",
-  "deadline": "2026-11-25 14:30:41",
-  "budget": "በሰርስርትክርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስርስር
-2026-11-10 18:39:24 | WARNING | LLM rate-limited for https://tender.2merkato.com/tenders/6af304ea0a538a746c000001 (retry in 30s): Groq API returned 429 (transient: rate-limit or high demand)
-2026-11-10 18:39:56 | INFO    | Dashboard: appended tender 8a746c000001
-2026-11-10 18:39:56 | INFO    | Sent: የአ/አበባ ፖሊስ ዋና ጠቅላይ መምሪያ በ2019 በጀት ዓመት የተለያዩ ዕቃዎችን በግልፅ ጨረታ አወዳድሮ መግዛት ይፈልጋል (Vehicle Purchase, score=90)
-2026-11-10 18:39:57 | WARNING | LLM rate-limited for https://tender.2merkato.com/tenders/6af2ff270a538a7478000001 (retry in 30s): Groq API returned 429 (transient: rate-limit or high demand)
-2026-11-10 18:40:28 | WARNING | Could not parse LLM JSON for https://tender.2merkato.com/tenders/6af2ff270a538a7478000001. Raw: {
-  "is_relevant": true,
-  "relevance_score": 90,
-  "category": "Vehicle Purchase",
-  "deadline": "2026-11-27 12:00:00",
-  "budget": null,
-  "summary": "The Ethiopian procurement portal tender.2merkat
-2026-11-10 18:40:28 | INFO    | Dashboard: regenerated HTML with 39 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-11-10 18:40:28 | INFO    | Dashboard: wrote JSON array with 39 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-11-10 18:40:28 | INFO    | Cycle complete: {'scraped': 15, 'new': 4, 'sent': 1, 'skipped': 6, 'errors': 3}
-2026-11-10 18:40:28 | INFO    | ===== Bid News Agent finished =====
+2026-11-11 06:57:24 | INFO    | ===== Bid News Agent starting =====
+2026-11-11 06:57:24 | INFO    | Mode: single
+2026-11-11 06:57:24 | INFO    | Dry-run: False
+2026-11-11 06:57:24 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-11-11 06:57:24 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-11-11 06:57:25 | INFO    | Login step 1 OK — CSRF token: 8GWIbcKDMZAk…
+2026-11-11 06:57:25 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-11-11 06:57:26 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-11-11 06:57:26 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-11-11 06:57:26 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-11-11 06:57:26 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-11-11 06:57:27 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-11-11 06:57:27 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-11-11 06:57:27 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-11-11 06:57:27 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-11-11 06:57:27 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-11-11 06:57:27 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-11-11 06:57:27 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-11-11 06:57:27 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-11-11 06:57:27 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-11-11 06:57:28 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-11-11 06:57:28 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-11-11 06:57:28 | INFO    | Groq: using model 'qwen/qwen3.8-27b' (live-list fallback #0)
+2026-11-11 06:57:30 | INFO    | Dashboard: appended tender 8a77ee000001
+2026-11-11 06:57:30 | INFO    | Sent: Education Development Trust Ethiopia invites sealed bids from all eligible and q (Vehicle Purchase, score=100)
+2026-11-11 06:57:33 | INFO    | Dashboard: appended tender 8a17ff000001
+2026-11-11 06:57:33 | INFO    | Sent: Civil Registration and Residency Service Agency:- Procurement of Maintenance and (Vehicle Maintenance, score=95)
+2026-11-11 06:57:36 | INFO    | Dashboard: appended tender 8a49f8000001
+2026-11-11 06:57:36 | INFO    | Sent: ብሔራዊ አልኮልና አረቄ ፋብሪካ የ21 መኪና የነዳጅ ፍጆታ ቆጣቢ እና የጋዝ ብክነት መቆጣጠሪያ ግዥ በጨረታ አወዳድሮ ማሰራት ይ (Vehicle Maintenance, score=95)
+2026-11-11 06:57:39 | INFO    | Skip (not relevant, score=0): ገዳ ትራንስፖርት እና ሎጀስቲክስ አ.ማ. ላሉት ደረቅ ጭነት ተሽከርካሪዎች የአቅጣጫ ማመላከቻ መቆጣጠሪያ እና የነዳጅ አጠቃቀም 
+2026-11-11 06:57:39 | WARNING | LLM rate-limited for https://tender.2merkato.com/tenders/6af2ff270a538a7478000001 (retry in 30s): Groq API returned 429 (transient: rate-limit or high demand)
+2026-11-11 06:58:11 | INFO    | Dashboard: appended tender 8a7478000001
+2026-11-11 06:58:11 | INFO    | Sent: ጣና ፍሎራ ኃ.የተ.የግ.ማህበር ለአበባ ማጓጓዣ አገልግሎት የሚውል Obama Refrigerator truck አወዳድሮ ግዥ ለመፈጸ (Vehicle Purchase, score=95)
+2026-11-11 06:58:12 | INFO    | Dashboard: regenerated HTML with 43 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-11-11 06:58:12 | INFO    | Dashboard: wrote JSON array with 43 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-11-11 06:58:12 | INFO    | Cycle complete: {'scraped': 15, 'new': 5, 'sent': 4, 'skipped': 6, 'errors': 0}
+2026-11-11 06:58:12 | INFO    | ===== Bid News Agent finished =====
