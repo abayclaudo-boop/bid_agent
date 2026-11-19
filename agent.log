@@ -1,32 +1,29 @@
-2026-11-18 18:45:10 | INFO    | ===== Bid News Agent starting =====
-2026-11-18 18:45:10 | INFO    | Mode: single
-2026-11-18 18:45:10 | INFO    | Dry-run: False
-2026-11-18 18:45:10 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-11-18 18:45:10 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-11-18 18:45:10 | INFO    | Login step 1 OK — CSRF token: rgwhgugrfSLW…
-2026-11-18 18:45:10 | INFO    | Login step 2: POST https://tender.2merkato.com/login
-2026-11-18 18:45:11 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
-2026-11-18 18:45:12 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
-2026-11-18 18:45:12 | INFO    | Scraped 15 items from 2merkato Tenders
-2026-11-18 18:45:12 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
-2026-11-18 18:45:12 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
-2026-11-18 18:45:12 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
-2026-11-18 18:45:12 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
-2026-11-18 18:45:12 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
-2026-11-18 18:45:12 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
-2026-11-18 18:45:12 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
-2026-11-18 18:45:12 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
-2026-11-18 18:45:13 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
-2026-11-18 18:45:13 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
-2026-11-18 18:45:13 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
-2026-11-18 18:45:13 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
-2026-11-18 18:45:14 | INFO    | Groq: using model 'openai/gpt-oss-20b' (live-list fallback #0)
-2026-11-18 18:45:15 | INFO    | Dashboard: appended tender 8a7fc6000001
-2026-11-18 18:45:15 | INFO    | Sent: Nefas Silk Lafto Sub City: Procurement of Garage Service (Vehicle Maintenance, score=100)
-2026-11-18 18:45:17 | WARNING | LLM call attempt 1 failed for https://tender.2merkato.com/tenders/6afd64030a538a1016000001 (retry in 1s): Groq choice has no content
-2026-11-18 18:45:19 | WARNING | LLM call attempt 2 failed for https://tender.2merkato.com/tenders/6afd64030a538a1016000001 (retry in 2s): Groq choice has no content
-2026-11-18 18:45:21 | ERROR   | LLM call gave up after retries for https://tender.2merkato.com/tenders/6afd64030a538a1016000001: Groq choice has no content
-2026-11-18 18:45:21 | INFO    | Dashboard: regenerated HTML with 65 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-11-18 18:45:21 | INFO    | Dashboard: wrote JSON array with 65 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-11-18 18:45:21 | INFO    | Cycle complete: {'scraped': 15, 'new': 2, 'sent': 1, 'skipped': 8, 'errors': 1}
-2026-11-18 18:45:21 | INFO    | ===== Bid News Agent finished =====
+2026-11-19 07:00:16 | INFO    | ===== Bid News Agent starting =====
+2026-11-19 07:00:16 | INFO    | Mode: single
+2026-11-19 07:00:16 | INFO    | Dry-run: False
+2026-11-19 07:00:16 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-11-19 07:00:16 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-11-19 07:00:17 | INFO    | Login step 1 OK — CSRF token: nIs2lgYautHL…
+2026-11-19 07:00:17 | INFO    | Login step 2: POST https://tender.2merkato.com/login
+2026-11-19 07:00:17 | INFO    | Login OK (final URL: https://tender.2merkato.com/tenders, status=200)
+2026-11-19 07:00:18 | INFO    | [2merkato Tenders] inertia_json parser: extracted 15 items via path 'props.tenders.data'
+2026-11-19 07:00:18 | INFO    | Scraped 15 items from 2merkato Tenders
+2026-11-19 07:00:18 | WARNING | Site returned 15 items (cap=10) — processing first 10 only.
+2026-11-19 07:00:18 | INFO    | Groq model 'llama-3.3-70b-versatile' not available — trying next fallback
+2026-11-19 07:00:18 | INFO    | Groq model 'llama-3.1-70b-versatile' not available — trying next fallback
+2026-11-19 07:00:18 | INFO    | Groq model 'llama-3.1-8b-instant' not available — trying next fallback
+2026-11-19 07:00:18 | INFO    | Groq model 'llama3-70b-8192' not available — trying next fallback
+2026-11-19 07:00:19 | INFO    | Groq model 'llama3-8b-8192' not available — trying next fallback
+2026-11-19 07:00:19 | INFO    | Groq model 'gemma2-9b-it' not available — trying next fallback
+2026-11-19 07:00:19 | INFO    | Groq model 'mixtral-8x7b-32768' not available — trying next fallback
+2026-11-19 07:00:19 | INFO    | Groq model 'llama-3.2-1b-preview' not available — trying next fallback
+2026-11-19 07:00:19 | INFO    | Groq model 'llama-3.2-3b-preview' not available — trying next fallback
+2026-11-19 07:00:19 | INFO    | Groq model 'llama3-groq-70b-8192-tool-use-preview' not available — trying next fallback
+2026-11-19 07:00:19 | INFO    | Groq: fetched 11 live models from /v1/models endpoint
+2026-11-19 07:00:20 | INFO    | Groq: using model 'qwen/qwen3.8-27b' (live-list fallback #0)
+2026-11-19 07:00:21 | INFO    | Dashboard: appended tender 8a1016000001
+2026-11-19 07:00:21 | INFO    | Sent: የመንግሥት ሰራተኞች ማህበራዊ ዋስትና አስተዳደር ደቡብ ምስራቅ ሪጅን ጽ/ቤቱ የሚገኙ ባለ አራት እግር ተሽከርካሪዎችን በግልጽ  (Vehicle Maintenance, score=95)
+2026-11-19 07:00:22 | INFO    | Dashboard: regenerated HTML with 66 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-11-19 07:00:22 | INFO    | Dashboard: wrote JSON array with 66 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-11-19 07:00:22 | INFO    | Cycle complete: {'scraped': 15, 'new': 1, 'sent': 1, 'skipped': 9, 'errors': 0}
+2026-11-19 07:00:22 | INFO    | ===== Bid News Agent finished =====
