@@ -1,12 +1,12 @@
-2026-11-23 17:28:35 | INFO    | ===== Bid News Agent starting =====
-2026-11-23 17:28:35 | INFO    | Mode: single
-2026-11-23 17:28:35 | INFO    | Dry-run: False
-2026-11-23 17:28:35 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
-2026-11-23 17:28:35 | INFO    | Login step 1: GET https://tender.2merkato.com/login
-2026-11-23 17:28:36 | ERROR   | Could not extract CSRF token from login page. Aborting login.
-2026-11-23 17:28:37 | ERROR   | [2merkato Tenders] inertia_json parser: no <div id='app' data-page='...'> found in HTML. Aborting.
-2026-11-23 17:28:37 | INFO    | Scraped 0 items from 2merkato Tenders
-2026-11-23 17:28:37 | INFO    | Dashboard: regenerated HTML with 68 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
-2026-11-23 17:28:37 | INFO    | Dashboard: wrote JSON array with 68 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
-2026-11-23 17:28:37 | INFO    | Cycle complete: {'scraped': 0, 'new': 0, 'sent': 0, 'skipped': 0, 'errors': 0}
-2026-11-23 17:28:37 | INFO    | ===== Bid News Agent finished =====
+2026-11-24 03:50:39 | INFO    | ===== Bid News Agent starting =====
+2026-11-24 03:50:39 | INFO    | Mode: single
+2026-11-24 03:50:39 | INFO    | Dry-run: False
+2026-11-24 03:50:39 | INFO    | LLM backend: Groq (model=llama-3.3-70b-versatile, fallbacks=10) — free tier, 1000 req/day
+2026-11-24 03:50:39 | INFO    | Login step 1: GET https://tender.2merkato.com/login
+2026-11-24 03:50:40 | ERROR   | Could not extract CSRF token from login page. Aborting login.
+2026-11-24 03:50:40 | ERROR   | [2merkato Tenders] inertia_json parser: no <div id='app' data-page='...'> found in HTML. Aborting.
+2026-11-24 03:50:40 | INFO    | Scraped 0 items from 2merkato Tenders
+2026-11-24 03:50:40 | INFO    | Dashboard: regenerated HTML with 68 tenders at /home/runner/work/bid_agent/bid_agent/data/index.html
+2026-11-24 03:50:40 | INFO    | Dashboard: wrote JSON array with 68 tenders at /home/runner/work/bid_agent/bid_agent/data/tenders.json
+2026-11-24 03:50:40 | INFO    | Cycle complete: {'scraped': 0, 'new': 0, 'sent': 0, 'skipped': 0, 'errors': 0}
+2026-11-24 03:50:40 | INFO    | ===== Bid News Agent finished =====
